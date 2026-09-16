@@ -1,0 +1,11 @@
+{
+  "executed_code_cells": 28,
+  "embedded_image_outputs": 8,
+  "cell_sources_match_original": true,
+  "all_model_weights_finite": true,
+  "trained_weights_differ_from_baseline": true,
+  "archive": "pacman_runs/20260915_200035_892426.zip",
+  "archive_sha256": "24602f9de650ca4da2237cbb71e7fa73f36e09a2d9cd3054dd4a1c7a8168434f",
+  "archive_integrity": "passed",
+  "notebook_sha256": "43d87c61ae85a7a939272b0f0fc5505db0da754773f3df37f61994bfad67aed3"
+}

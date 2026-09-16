@@ -1,0 +1,7 @@
+.venv/
+pacman_runs/
+*.zip
+*.pt
+__pycache__/
+.ipynb_checkpoints/
+.execution/
