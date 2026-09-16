@@ -1,25 +1,29 @@
 # Class 3: Train a Ms. Pac-Man Agent
 
-The extended **Double DQN** experiment completed **2,000 / 2,000 episodes**. Its mean score on the five unchanged evaluation games increased from **492 to 1,582** (+1,090.0 points). The original 100-episode DQN achieved **504**, so the new final mean is **+1,078.0 points** relative to that first experiment.
+The extended **Double DQN** experiment completed **2,000 / 2,000 episodes**. Its mean score on the five unchanged evaluation games increased from **492 to 1,582**: **+1,090 points, a 221.5% increase, or 3.22 times the untrained score**. The original 100-episode DQN achieved **504**, so the new final mean is **+1,078 points, or 213.9% higher**, than that first experiment.
 
 The leaderboard score for this final saved model is **1,582**. The table below reports every game. The submitted model is the final model from this run, not a checkpoint selected by its best evaluation score.
 
 This repository contains the [final executed notebook](pacman_dqn.ipynb), with all 28 code cells executed in order and all outputs retained. It extends the [supplied Pac-Man project](https://github.com/pepealonso95/pacman-dqn). The [original 100-episode experiment](experiments/original_100/README.md), [original notebook](experiments/original_100/pacman_dqn.ipynb), and its evidence remain available for comparison.
 
+The main learning result is better point collection from the same screen-based observations. The gameplay shows more corridor clearing and successful power-pellet use in some recordings. Every final evaluation score improved over its matching untrained baseline, but scores still varied from 980 to 2,530. This supports a more useful learned policy, without establishing reliable survival or complete understanding of the game.
+
 ## Choices and expectation recorded before training
 
 | Setting | Choice | Reason |
 | --- | ---: | --- |
-| Exploration | 0.10 | Keep trying alternatives while reducing the disruptions from the first run's 20% random moves. |
-| Episode budget | 2,000 | Collect substantially more experience, subject to the two-hour training limit and three-hour overall project budget. |
-| Learning rate | 0.0001 | Retain the conservative update size from the first run while extending training and memory. |
+| Exploration | 0.10 | After warm-up, about one in ten decisions is random and the rest follow learned action values. Reducing the first run's 20% random decisions was intended to let useful movement patterns continue more often while still trying alternatives. |
+| Episode budget | 2,000 | Give the agent twenty times the original episode budget to revisit situations and learn from more experience. A two-hour training cap reserved time within the three-hour overall budget for evaluation and saving the evidence. |
+| Learning rate | 0.0001 | Keep the supplied reference rate for relatively small network updates. Retaining the original rate avoided adding another change while increasing experience and replay memory. |
 
 The [before-training plan](experiment_plan.md) expected a larger experience budget and replay memory to improve point collection, with no guarantee of a higher score. Exploration was 100% for the first 1,000 decisions, then stayed constant at **10%**. No exploration-decay schedule was introduced.
+
+These choices were a practical experiment within the available time, not settings proven to be optimal. The final five-game mean improved as hoped, but several training settings changed together, so the result cannot identify which individual change helped most.
 
 Two extensions to the supplied DQN were explicitly chosen and documented:
 
 - **Double DQN:** the online network chooses the next action; the target network estimates that chosen action's value. Separating selection from valuation aims to reduce overoptimistic action-value estimates. [Double DQN paper](https://arxiv.org/abs/1509.06461).
-- **Replay capacity 20,000**, increased from 5,000: retain a wider range of past experiences for random training batches.
+- **Replay capacity 20,000**, increased from 5,000: keep four times as many past experiences before replacing them. Random training batches can therefore draw from a broader set of situations spanning more games. The tradeoff is greater memory use.
 
 An operational **2-hour training cap** saves the current model through the notebook's interruption path, then allows final evaluation and archiving. This cap does not change the per-game evaluation time limit. The network architecture, observations, actions, game setup, reward clipping, training seed, and evaluation settings remain unchanged. This run starts from fresh weights and fresh replay memory; it does not resume the first experiment.
 
@@ -68,7 +72,7 @@ Relative to the new baseline, **5 games improved, 0 worsened, and 0 were unchang
 
 Machine-readable evidence: [all new comparison scores](results/comparison.json), [baseline.json](results/baseline.json), and [original comparison](experiments/original_100/results/comparison.json).
 
-The final policy earned a higher mean score on this fixed five-game comparison. That supports improvement under these evaluation conditions; it does not establish consistent performance across all possible games.
+The final policy earned a higher mean score on this fixed five-game comparison. The percentage increase is calculated as `(1,582 - 492) / 492 × 100 = 221.5%`. All five games improved, so the gain is not solely one exceptional game. However, these five fixed seeds and one training run do not establish consistent performance across all possible games.
 
 ## Gameplay evidence
 
@@ -471,13 +475,19 @@ Non-overlapping training blocks provide another view of the score trend:
 
 All eight blocks contain 250 completed episodes. Detailed 25-episode block averages and the original measurements are available in [report_data.json](results/report_data.json) and [training.csv](results/training.csv). DQN's target values change as learning proceeds, so loss is not a direct measure of gameplay quality. Lower loss does not guarantee better play.
 
+The first 250 training games averaged **749.2 points**; the last 250 averaged **1,111.16**, an increase of **48.3%**. Progress was uneven, including a decline in episodes 501–750. Mean episode loss was higher in the last block than the first even though scores improved. This is why the evaluation scores and gameplay, rather than a low loss value alone, determine the conclusion.
+
 **Observations:** four consecutive grayscale game screens, each 84 × 84 pixels, provide positions and recent movement. The network receives pixels, not explicit ghost coordinates or a hand-coded map.
 
 **Actions:** nine joystick choices: no movement, up, right, left, down, and the four diagonals. Each decision spans four emulator frames. The unchanged sticky-action setting can repeat the previous action.
 
 **Rewards:** game points provide a numeric reward directly from the emulator. The agent does not need to read scoreboard digits to receive this signal. Training clips each decision's reward to [-1, 1], while all reported scores retain the original game points. The network learns estimates of immediate and discounted future reward for each action using replayed experiences.
 
-**What the evidence supports:** The network received **329,410 learning updates**. The verified trained weights differ from the untrained weights and remain finite. This establishes parameter learning, not mastery of the game. The final policy earned a higher mean score on this fixed five-game comparison. That supports improvement under these evaluation conditions; it does not establish consistent performance across all possible games.
+**How learning happened:** the agent stored examples of a screen stack, its chosen move, the resulting reward, and the next screen stack. During each update it sampled stored examples and adjusted its network's action-value predictions toward immediate rewards plus estimated future rewards. Double DQN used the online network to choose the next action and the target network to value that choice. Across **329,410 updates**, the network developed action preferences associated with higher rewards. It was not given written instructions to follow pellets or avoid ghosts.
+
+**What it appears to have learned:** the combination of improved scores and the reviewed clips suggests useful steering and point-collection patterns, including routes that reach power pellets. We can observe those behaviors; we cannot infer that it understands concepts such as “ghost,” “danger,” or scoreboard digits in a human sense. Some successful short clips also preserve lives longer than the baseline clip, but the full evaluations still end in game over.
+
+The full-game records also show some improved survival: average game length rose from **589 to 723.8 decisions (+22.9%)**, with longer games on four of five seeds. Seed 404 ended sooner despite earning more points, so longer survival alone does not explain every score increase. These lengths are recorded in [comparison.json](results/comparison.json).
 
 **Observed limitation:** the trained agent is still inconsistent: final scores range from **980 to 2,530**, and all five games end before the 3,000-decision time limit. It has improved point collection but has not learned dependable long-term survival. Intermediate demonstrations also fluctuate—for example, the episode-1,800 game scores 1,880, while episode 1,875 scores 630.
 
