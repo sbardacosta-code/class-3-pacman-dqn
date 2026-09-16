@@ -1,5 +1,6 @@
 """Execute the supplied notebook in order and preserve its actual outputs."""
 from pathlib import Path
+import time
 import nbformat
 from nbclient import NotebookClient
 
@@ -8,10 +9,16 @@ PATH = ROOT / "pacman_dqn.ipynb"
 notebook = nbformat.read(PATH, as_version=4)
 
 class LoggedClient(NotebookClient):
+    last_save = 0.0
+
     def process_message(self, msg, cell, cell_index):
         if msg["msg_type"] == "stream":
             print(msg["content"]["text"], end="", flush=True)
-        return super().process_message(msg, cell, cell_index)
+        result = super().process_message(msg, cell, cell_index)
+        if time.monotonic() - self.last_save >= 30:
+            save()
+            self.last_save = time.monotonic()
+        return result
 
 def save(**kwargs):
     temporary = PATH.with_suffix(".ipynb.tmp")
