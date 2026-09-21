@@ -1,39 +1,50 @@
-# Before-training plan: budgeted Double DQN experiment
+# Before-training plan: preserve reward magnitude
 
-The student approved a new experiment with a maximum of three hours total. Training is limited to two hours, reserving one hour for implementation, evaluation, saving, inspection, and publishing. The original 100-episode experiment is preserved under `experiments/original_100/`, and its full original archive remains under `pacman_runs/`.
+Recorded before the new training run on September 20, 2026. The student approved the proposed first experiment: test scaled point rewards alone before considering a life-loss penalty.
 
-## Selected settings
+## Hypothesis and the single changed training setting
 
-- Exploration: **0.10**, constant after the unchanged 1,000-decision random warm-up. This tests whether fewer random disruptions allow useful behavior to persist.
-- Episodes: **2,000 maximum**. More experience than the original run, with an operational wall-clock stop after two hours.
-- Learning rate: **0.0001**, unchanged to avoid simultaneously changing the update magnitude.
+The previous Double DQN stored `clip(raw_points, -1, 1)` for learning. Both a 10-point gain and a 200-point gain therefore became +1. This experiment instead stores **`raw_points * 0.01`, with no clipping**. Those gains now become 0.1 and 2.0, preserving the game's relative point values. Larger rewards may encourage more valuable point-collection behavior. Removing clipping may also make learning less stable, so improvement is a hypothesis, not a promised outcome.
 
-## Disclosed extensions
+**No death penalty is added.** It would change a second aspect of the reward and make this comparison harder to interpret. The proposed later experiment would test a small life-loss penalty separately, if the evidence supports trying it.
 
-- **Double DQN:** the online network selects the next action and the target network evaluates that action. This is intended to reduce overoptimistic value estimates. It is an algorithm extension of the supplied DQN, not a hyperparameter or a new architecture.
-- **Replay capacity 20,000** rather than 5,000: retain a wider range of recent experiences. Pixel storage is approximately 673 MiB, plus model, batch, and Python overhead.
-- **Two-hour training cap:** checked before each training decision; on expiry a single `KeyboardInterrupt` follows the notebook's existing save-and-evaluate path. The final summary records an interrupted run if the cap is reached. The last partial episode can contribute updates but is not counted as completed.
+The agent still receives numeric rewards from the emulator; it does not need to read score pixels. Raw training and evaluation scores remain the original game points. The reward transformation is applied once, when storing experiences for learning.
 
-The assignment explicitly allows explained changes to other hyperparameters and describes building an agent as optional. We interpret that optional extension allowance as permitting Double DQN, while clearly disclosing the modification rather than claiming the supplied implementation is unchanged.
+## Settings retained from the comparison run
 
-## Expectation and comparison
+| Setting | Choice | Why retain it? |
+| --- | ---: | --- |
+| Exploration | 0.10 after 1,000 random warm-up decisions | Keep the same balance of alternative moves and learned action preferences. |
+| Episode budget | 2,000 | Match the previous requested budget within the same time constraint. |
+| Learning rate | 0.0001 | Isolate reward scaling rather than also change update size. |
+| Algorithm | Double DQN | Preserve online action selection and target-network valuation. |
+| Replay capacity | 20,000 | Keep memory capacity fixed. |
+| Training cap | 7,200 seconds | Reuse the two-hour training limit, leaving time within the prior three-hour overall budget for setup, evaluation, and publishing. |
 
-Before training, expect that more experience, reduced random moves, and broader replay may improve consistent point collection and reduce stalls. Improvement is uncertain. Because multiple training factors change together, this experiment cannot identify which factor caused any difference. No promise of a particular score is made.
+All other training settings, network architecture, observations, actions, environment configuration, and the training seed remain unchanged. Run All starts **fresh weights, optimizer, and replay**, using the same seed; this is not an exact resumption of the previous model. GPU nondeterminism and different trajectories can still affect results. If the cap stops the run early, report completed episodes, decisions, updates, and any partial episode honestly; unequal realized training budgets limit the comparison.
 
-The evaluation remains exactly the original function and settings: seeds 101, 202, 303, 404, and 505; exploration 0.05; 3,000 decisions per game; unchanged environment, preprocessing, reward reporting, and GIF selection. The new run starts from a fresh untrained network, obtains its own baseline, and evaluates its final saved checkpoint. It does not select a checkpoint using the five official scores.
+## Evaluation and success criteria
 
-All periodic GIFs and checkpoints will be retained. The final executed notebook and selected evidence will replace the root submission, while the first experiment remains accessible. Any regression will be reported.
+The classroom evaluation stays byte-for-byte unchanged: seeds **101, 202, 303, 404, 505**, exploration **0.05**, and **3,000 decisions per game**, using the same preprocessing and environment. Obtain a new untrained baseline, then evaluate the final saved model once on those five games. Preserve all five raw scores, their mean, minimum, and the fraction reaching 3,000 points. Do not choose a checkpoint using the best of repeated official evaluations.
 
----
+The previous clipped experiment achieved scores **2,310, 2,530, 1,000, 1,090, 980**, mean **1,582**, with **0/5** games at 3,000. The new run tests progress toward the student's goal of consistent 3,000+ scores. A high average alone does not establish consistency. Additional validation on separate seeds can test generalization after training; it must remain separate from the unchanged classroom evaluation.
 
-## Original 100-episode plan (preserved)
+Before seeing results, the expectation is better recognition of valuable point gains, potentially improving raw score. Neither reward scaling nor another 2,000 episodes guarantees 3,000+. Preserve and report regressions or instability.
 
-The student selected the suggested settings before execution:
+## Evidence and preservation
 
-- Exploration: **0.20**. Continue trying alternative moves after the fixed 1,000-decision random warm-up, while using the learned action values most of the time.
-- Episode budget: **100**. Allow substantially more experience than a five-game setup check while keeping the experiment manageable locally.
-- Learning rate: **0.0001**. Use conservative updates to reduce instability in the network's value estimates.
+The previous 2,000-episode clipped experiment, executed notebook, and evidence are preserved under [experiments/clipped_2000](experiments/clipped_2000/README.md); its full local ZIP remains unchanged. The original 100-episode experiment also remains available. Their historical plans record the reasoning used before those runs.
 
-Expectation recorded before training: modest improvement in collecting points, with uneven results across games. One hundred episodes may still be insufficient for reliable ghost avoidance. This is a hypothesis, not an observed result.
+The new notebook will execute all cells in order and retain all outputs. Save each intermediate GIF/checkpoint at 25-episode intervals, final evaluation, dashboard, settings, package/hardware information, CSV/JSON evidence, and full local ZIP. Publish the final executed notebook, report, and selected evidence, keeping every run's outcome visible.
 
-Only the three requested settings are selected; their values already match the supplied notebook. All other notebook code and evaluation settings remain unchanged. Evaluation uses seeds 101, 202, 303, 404, and 505, exploration 0.05, and a 3,000-decision limit both before and after training. The baseline is an untrained network.
+## Research informing the hypothesis
+
+Hado van Hasselt's [Ms. Pac-Man reward-clipping comparison](https://hadovanhasselt.com/2016/08/17/atari-videos/) showed different behavior with unclipped rewards and adaptive target normalization. Our simple fixed scale of 0.01 is a distinct, smaller experiment, not a reproduction of Pop-Art or a proven best setting. The assignment permits explained extensions; this training reward change is explicitly disclosed, while evaluation remains unchanged.
+
+## Additional validation plan (recorded during initial training, before final results)
+
+Evaluate both the new final model and the preserved clipped-reward final model once on **20 separate seeds, 10001 through 10020**, using the same evaluation function, 5% exploration, and 3,000-decision limit. These seeds are separate from the classroom seeds and this run's training-reset seeds. Report every raw score, mean, median, minimum, and fraction at or above 3,000. This comparison is additional evidence about consistency; it does not replace or change the classroom's five-game leaderboard result, and it will not select a checkpoint. Save its JSON/CSV separately from the notebook-generated run ZIP.
+
+## Post-run execution note
+
+An apparent host pause advanced wall-clock time by several hours while the notebook's training timer advanced much less. After detecting that the original three-hour wall-clock window had passed, training was interrupted once through its existing save handler. The configured 7,200-second training cap was **not** reached. The run recorded **1,069 completed episodes, 744,500 decisions, 185,875 learning updates, and 4,587.930 seconds** on its training timer; final evaluation and ZIP creation then finished normally. The interruption occurred at a scheduled update boundary, so the report retains the recorded update counter rather than inferring one extra completed update. This smaller actual training budget prevents a clean causal comparison of reward transformations with the earlier 2,000-episode run.

@@ -31,10 +31,10 @@
   "train_every_decisions": 4,
   "target_sync_decisions": 1000,
   "gamma": 0.99,
-  "training_reward_clipping": [
-    -1,
-    1
-  ],
+  "training_reward_clipping": null,
+  "training_reward_scale": 0.01,
+  "training_reward_transform": "raw_points * 0.01 (no clipping)",
+  "training_death_penalty": 0.0,
   "eval_exploration": 0.05,
   "eval_seeds": [
     101,

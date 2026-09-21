@@ -1,6 +1,6 @@
 {
-  "verified_at_utc": "2026-09-16T05:17:16.696984+00:00",
-  "run_id": "20260915_203342_502034",
+  "verified_at_utc": "2026-09-21T03:52:23.745103+00:00",
+  "run_id": "20260920_152728_434799",
   "executed_code_cells": 28,
   "execution_counts": [
     1,
@@ -35,11 +35,32 @@
   "notebook_error_outputs": 0,
   "evaluation_settings_unchanged": true,
   "evaluation_and_preprocessing_source_unchanged": true,
+  "update_count_reconciliation": {
+    "scheduled_learning_updates": 185876,
+    "recorded_learning_updates": 185875,
+    "scheduled_minus_recorded": 1,
+    "interrupted_update_completion_uncertain": true,
+    "explanation": "The decision counter advances before learn() and the update counter advances after learn() returns. Interruption at an update boundary left one scheduled update unrecorded; whether its optimizer step started or completed is unknown. The recorded update count is preserved, not increased."
+  },
+  "training_reward": {
+    "mode": "scaled_raw_points",
+    "clipping": null,
+    "scale": 0.01,
+    "transform": "raw_points * 0.01 (no clipping)",
+    "death_penalty": 0.0,
+    "source_and_config_verified": true,
+    "only_reward_training_setting_changed_vs_clipped_2000": true,
+    "changed_code_cells_vs_clipped_2000_zero_based": [
+      10,
+      19,
+      43
+    ]
+  },
   "cell_sources_match_original": false,
   "all_model_weights_finite": true,
   "trained_weights_differ_from_baseline": true,
-  "archive": "pacman_runs/20260915_203342_502034.zip",
-  "archive_sha256": "7031d77dfceec01acaf45f348a731b88c381d4f0975849933808b94a3bf98056",
+  "archive": "pacman_runs/20260920_152728_434799.zip",
+  "archive_sha256": "4925a56f83b7443935c97dbdf8df7c148e66121b117a8456e75fdb9268bf347e",
   "archive_integrity": "passed",
   "archive_members_byte_matched_to_local_files": [
     "config.json",
@@ -93,44 +114,6 @@
     "episode_1000.pt",
     "episode_1025.pt",
     "episode_1050.pt",
-    "episode_1075.pt",
-    "episode_1100.pt",
-    "episode_1125.pt",
-    "episode_1150.pt",
-    "episode_1175.pt",
-    "episode_1200.pt",
-    "episode_1225.pt",
-    "episode_1250.pt",
-    "episode_1275.pt",
-    "episode_1300.pt",
-    "episode_1325.pt",
-    "episode_1350.pt",
-    "episode_1375.pt",
-    "episode_1400.pt",
-    "episode_1425.pt",
-    "episode_1450.pt",
-    "episode_1475.pt",
-    "episode_1500.pt",
-    "episode_1525.pt",
-    "episode_1550.pt",
-    "episode_1575.pt",
-    "episode_1600.pt",
-    "episode_1625.pt",
-    "episode_1650.pt",
-    "episode_1675.pt",
-    "episode_1700.pt",
-    "episode_1725.pt",
-    "episode_1750.pt",
-    "episode_1775.pt",
-    "episode_1800.pt",
-    "episode_1825.pt",
-    "episode_1850.pt",
-    "episode_1875.pt",
-    "episode_1900.pt",
-    "episode_1925.pt",
-    "episode_1950.pt",
-    "episode_1975.pt",
-    "episode_2000.pt",
     "demos/episode_0000.gif",
     "demos/episode_0025.gif",
     "demos/episode_0050.gif",
@@ -174,44 +157,6 @@
     "demos/episode_1000.gif",
     "demos/episode_1025.gif",
     "demos/episode_1050.gif",
-    "demos/episode_1075.gif",
-    "demos/episode_1100.gif",
-    "demos/episode_1125.gif",
-    "demos/episode_1150.gif",
-    "demos/episode_1175.gif",
-    "demos/episode_1200.gif",
-    "demos/episode_1225.gif",
-    "demos/episode_1250.gif",
-    "demos/episode_1275.gif",
-    "demos/episode_1300.gif",
-    "demos/episode_1325.gif",
-    "demos/episode_1350.gif",
-    "demos/episode_1375.gif",
-    "demos/episode_1400.gif",
-    "demos/episode_1425.gif",
-    "demos/episode_1450.gif",
-    "demos/episode_1475.gif",
-    "demos/episode_1500.gif",
-    "demos/episode_1525.gif",
-    "demos/episode_1550.gif",
-    "demos/episode_1575.gif",
-    "demos/episode_1600.gif",
-    "demos/episode_1625.gif",
-    "demos/episode_1650.gif",
-    "demos/episode_1675.gif",
-    "demos/episode_1700.gif",
-    "demos/episode_1725.gif",
-    "demos/episode_1750.gif",
-    "demos/episode_1775.gif",
-    "demos/episode_1800.gif",
-    "demos/episode_1825.gif",
-    "demos/episode_1850.gif",
-    "demos/episode_1875.gif",
-    "demos/episode_1900.gif",
-    "demos/episode_1925.gif",
-    "demos/episode_1950.gif",
-    "demos/episode_1975.gif",
-    "demos/episode_2000.gif",
     "demos/final_best.gif"
   ],
   "expected_periodic_checkpoints_present": [
@@ -256,48 +201,10 @@
     975,
     1000,
     1025,
-    1050,
-    1075,
-    1100,
-    1125,
-    1150,
-    1175,
-    1200,
-    1225,
-    1250,
-    1275,
-    1300,
-    1325,
-    1350,
-    1375,
-    1400,
-    1425,
-    1450,
-    1475,
-    1500,
-    1525,
-    1550,
-    1575,
-    1600,
-    1625,
-    1650,
-    1675,
-    1700,
-    1725,
-    1750,
-    1775,
-    1800,
-    1825,
-    1850,
-    1875,
-    1900,
-    1925,
-    1950,
-    1975,
-    2000
+    1050
   ],
-  "notebook_sha256": "523ddca4979ee7980ddb3d2a21ea092617fb6ced047f0231830b4cb5c7a7e753",
-  "gif_output_count": 82,
+  "notebook_sha256": "2cfcbb5dc8dd861ec209b6c2345e48af6a61280cb554d4af835071d5b9a69a44",
+  "gif_output_count": 44,
   "gif_matches": [
     {
       "file": "results/demos/episode_0000.gif",
@@ -307,499 +214,271 @@
     },
     {
       "file": "results/demos/episode_0025.gif",
-      "sha256": "a50b6e087c5e08527b0a9735bfbdb4e2d545a01d945f576603ec683727be019d",
+      "sha256": "ef33a3000e05a175352855c9f48535e06f6635c03cab18a904e4b3a1c9771a49",
       "cell_index": 53,
-      "output_index": 55
+      "output_index": 59
     },
     {
       "file": "results/demos/episode_0050.gif",
-      "sha256": "95293a8f42720e2fe2bbd4ecde412a447ad81c8638b80d378ae4973c2fae9c07",
+      "sha256": "e173ad2bf9ffa954f4ee0aaff1d66f9ca05e5f1ac1a50b8b4bf64302c432123d",
       "cell_index": 53,
-      "output_index": 113
+      "output_index": 118
     },
     {
       "file": "results/demos/episode_0075.gif",
-      "sha256": "086b6d1cc9f1737d28e236b60ca48d42dd3442c2fae2e6a9ba1a1182ffa661bc",
+      "sha256": "b0e9d439409bdf106017eac1b26c62cca731d298a3dc706e322638885aa61257",
       "cell_index": 53,
-      "output_index": 168
+      "output_index": 176
     },
     {
       "file": "results/demos/episode_0100.gif",
-      "sha256": "3487ea91532d8fb25bd2111a293521d3d613577fb926f41b1afc6edb17af8790",
+      "sha256": "2df2156ff63a9938fb4e1d038f662053e0654ddb9a80a2ca88f64c157f43d762",
       "cell_index": 53,
-      "output_index": 227
+      "output_index": 234
     },
     {
       "file": "results/demos/episode_0125.gif",
-      "sha256": "0b192539ea68e7d47be2efab3ca2e1b9ad8bf7c716494bdd88327cb1f219822b",
+      "sha256": "dca92c99ce0f75b775b8a7b291d96d76b75cd1020c7802d2b6fd31d0969c895f",
       "cell_index": 53,
-      "output_index": 284
+      "output_index": 290
     },
     {
       "file": "results/demos/episode_0150.gif",
-      "sha256": "67e8fd7580a0e0df9c47d8d473ebd23e7e92e83ee76f7fcec6030778b96d09b6",
+      "sha256": "fba8bd45ef98699ec9ab3f57e6a2f9cd1ab75a6edf6d75791a11c191f79258ea",
       "cell_index": 53,
-      "output_index": 343
+      "output_index": 351
     },
     {
       "file": "results/demos/episode_0175.gif",
-      "sha256": "c1bc3fb7835117655c857dd310f67fee401e3576d45988833a2b6cc60dc7c560",
+      "sha256": "30f451fd04adeadaf79f13fcba504f4b1358bb614c690b84d0781d8646da4e37",
       "cell_index": 53,
-      "output_index": 402
+      "output_index": 408
     },
     {
       "file": "results/demos/episode_0200.gif",
-      "sha256": "4439db5be8b5ff759919d29ec4ef8a47ad324084e323ce83576a1938cb4c1560",
+      "sha256": "d86901eb15aa46e19fde723ae3d9bc2b4e5c463fc994224a906abf00ee61ca9a",
       "cell_index": 53,
-      "output_index": 461
+      "output_index": 465
     },
     {
       "file": "results/demos/episode_0225.gif",
-      "sha256": "1cdd1411b1b63363311670e055fd7aaf68062036aba291f0f6c8fbbef6ed8206",
+      "sha256": "9820fd0e36a47fb29dd0590c9a5ff03271e9c00b13c61b96a2957612051f3aa0",
       "cell_index": 53,
-      "output_index": 518
+      "output_index": 522
     },
     {
       "file": "results/demos/episode_0250.gif",
-      "sha256": "ba07ab5a1051911b84ef83655c54ee26d51e19bbe406cc88ac64136d924b504c",
+      "sha256": "d5fdf6c61d38a990dc801e5d836f07dbb59bf1d4d1ecc27c21abd693a0db2c2c",
       "cell_index": 53,
-      "output_index": 577
+      "output_index": 585
     },
     {
       "file": "results/demos/episode_0275.gif",
-      "sha256": "eca9e87bc15c7197be1c9bb31f4994735aa5c6a060929591569dd0529d338238",
+      "sha256": "406b2991698c87cca572ee766a10615d8af1a908adeaea19351fd4f0f8470f55",
       "cell_index": 53,
-      "output_index": 637
+      "output_index": 647
     },
     {
       "file": "results/demos/episode_0300.gif",
-      "sha256": "da03d1503965f7d5d9dca36dba08b5b1dc8432ce0d864794d88ccb5e73121862",
+      "sha256": "a6d3e5645d680433eb125def70d7ea7fd825a2bdf893f3bbd5e8186a8ddd85a1",
       "cell_index": 53,
-      "output_index": 695
+      "output_index": 713
     },
     {
       "file": "results/demos/episode_0325.gif",
-      "sha256": "083e700ded284eedd74d5ce86b92542e91c30a0c083f6fc12ba425ecb1c6b4a8",
+      "sha256": "2d4a226b8e2482effdfed561024bccce3debc7d4727e90a5e1947fb16a9386d9",
       "cell_index": 53,
-      "output_index": 753
+      "output_index": 774
     },
     {
       "file": "results/demos/episode_0350.gif",
-      "sha256": "a767a1aa58ba5180c8752752ed58a02f4a53bc87079444c2dccb5281ad94bb2c",
+      "sha256": "7e830a31914ace8211608ff54073036e439d13da56fed8cd449cdb7743ea1538",
       "cell_index": 53,
-      "output_index": 810
+      "output_index": 835
     },
     {
       "file": "results/demos/episode_0375.gif",
-      "sha256": "3d201be1eb627087d5738a3639672e8153ff79c5d37586e57c64e2872687b27f",
+      "sha256": "294bde6dae405b63aee7966f70a0c80fa5ce16c38e9182686b31c7b48f3e49d9",
       "cell_index": 53,
-      "output_index": 869
+      "output_index": 897
     },
     {
       "file": "results/demos/episode_0400.gif",
-      "sha256": "b79bd7a6f69a9db93b544d9740bf33f35103f47c77cb5a48e790bd4579752b93",
+      "sha256": "97c9a8e8086cf64182e29c8fb548a03afbc7ceae3fe0f064a3d4c95a074f0c19",
       "cell_index": 53,
-      "output_index": 927
+      "output_index": 961
     },
     {
       "file": "results/demos/episode_0425.gif",
-      "sha256": "9973ae41ae003a65a67471d4d286f73d95b0949a441e3c518665987b9056cb5e",
+      "sha256": "a58ec494f5b65db74a075da18be2db20a0ca828cc3e44f2cb87aadb4569d8dbb",
       "cell_index": 53,
-      "output_index": 986
+      "output_index": 1021
     },
     {
       "file": "results/demos/episode_0450.gif",
-      "sha256": "d85b8192376cc636fb72aebb0a7716ea56ed9b7eb7ed4708f75b135acba2a300",
+      "sha256": "e85b791dcc7785c39aa18dd3f68ed4827c4c47133208865b2e4c168a6e7f9946",
       "cell_index": 53,
-      "output_index": 1043
+      "output_index": 1081
     },
     {
       "file": "results/demos/episode_0475.gif",
-      "sha256": "0222847fb9e60e60cf5fd8e4881643a77729249eaa9683462f4228791526c2ec",
+      "sha256": "26b021715a91697f67a066b7673da4b579c79afab14a7689f1337b22d2b5a516",
       "cell_index": 53,
-      "output_index": 1099
+      "output_index": 1144
     },
     {
       "file": "results/demos/episode_0500.gif",
-      "sha256": "8b20bbbdcf0f556f8ba345f3a3fd8c56c4349b8df808f75f2617698d1ce4a852",
+      "sha256": "0bad38e3c151c85d1451ec02b45498dddab5f1280f4894d8f90ea108c7acd838",
       "cell_index": 53,
-      "output_index": 1156
+      "output_index": 1204
     },
     {
       "file": "results/demos/episode_0525.gif",
-      "sha256": "737db973130f0e8757f1915d493dd48bb719f627fcc9e7f3b601e6fb2aebb916",
+      "sha256": "b5b4bb51b5e52c4a4c0aff800368f8eb988c8269579824145d9d8b62eb099270",
       "cell_index": 53,
-      "output_index": 1210
+      "output_index": 1268
     },
     {
       "file": "results/demos/episode_0550.gif",
-      "sha256": "a455d2cf5a0a18e609b6be7efc7b461bf7a246d341fdf5de684ba109e72aacf2",
+      "sha256": "4dc45f9848aa9340d70155dd22f83597e1f7291e270fabf6e75dcf2ef32663b8",
       "cell_index": 53,
-      "output_index": 1264
+      "output_index": 1329
     },
     {
       "file": "results/demos/episode_0575.gif",
-      "sha256": "f7d71fce25995394a41106d5997aa6f0a36e27a3b009c32ff8e611e5657939dc",
+      "sha256": "2b822fe9a3f59b3add7c185e8bd51cf65f069e50a6f15bc642e577002b00fb28",
       "cell_index": 53,
-      "output_index": 1322
+      "output_index": 1392
     },
     {
       "file": "results/demos/episode_0600.gif",
-      "sha256": "ec7f3fb8d073aca0a5e1dad30fd726976effdea6b762fbfec4ba2b6917458241",
+      "sha256": "fe7bc4ae71ae3c4a6ac7813dcb660e5ce9df310c863d341d4bc4f4010dc64a43",
       "cell_index": 53,
-      "output_index": 1381
+      "output_index": 1455
     },
     {
       "file": "results/demos/episode_0625.gif",
-      "sha256": "819d2954f0b08d9818ac6ceaa8bcb19444a1f8b4b04225879cd1f771ac44c545",
+      "sha256": "b390e8bc27a765a1b98e952774ca4580e6e189a7fcb3aeef7e156d00fcb6bcc3",
       "cell_index": 53,
-      "output_index": 1437
+      "output_index": 1515
     },
     {
       "file": "results/demos/episode_0650.gif",
-      "sha256": "383098fb0165ec20730a931f77a09a975cc9b6037bd6bf0d59984153ce50e0ae",
+      "sha256": "564cea2acf78d85ed7f4a7f934e371dd5762a50b383419c7f3a3d42a179b9d3c",
       "cell_index": 53,
-      "output_index": 1493
+      "output_index": 1578
     },
     {
       "file": "results/demos/episode_0675.gif",
-      "sha256": "0869e17875b6372529910dcfbb19fe465bea2741ef7ffd8d4540dccfa2da599a",
+      "sha256": "858e5f21da998698746d8bce6c0bb9564517b6bde21fed98236143f8072bccc7",
       "cell_index": 53,
-      "output_index": 1553
+      "output_index": 1641
     },
     {
       "file": "results/demos/episode_0700.gif",
-      "sha256": "58d23248331f79fce5150a604b99278ea6b94f92b73333a6dac4c3d9a2561f1f",
+      "sha256": "ff325498b5f58f0f47c9a9ad7e483a3b4128a9235b3ec0d00e59c01f7c72fbf4",
       "cell_index": 53,
-      "output_index": 1610
+      "output_index": 1706
     },
     {
       "file": "results/demos/episode_0725.gif",
-      "sha256": "414d7eb99ed36916edae045e1d1086c728b62f98b6d040989df8940885c2ef5c",
+      "sha256": "7e0ca582f3edf68871bbc1303836f7d5cc59b583fd782f9140ce9cab5e70c268",
       "cell_index": 53,
-      "output_index": 1667
+      "output_index": 1773
     },
     {
       "file": "results/demos/episode_0750.gif",
-      "sha256": "2144240589de80ed39b77701784cf5886af809ca8d5c50ce68fd22e23ff99da2",
+      "sha256": "73ae2149fab8fd44bd10e79751339560e66d05b4f88b2a91a1809386ea94fb61",
       "cell_index": 53,
-      "output_index": 1723
+      "output_index": 1836
     },
     {
       "file": "results/demos/episode_0775.gif",
-      "sha256": "167f7328fad55da76b78cb3dbaa4acf13a2a63b0f3b3b28bd39bc0e5db07f296",
+      "sha256": "6127db0b56202980629a88eeca7b3a24e3d1f3c01e5c253cb621fca32b4bb073",
       "cell_index": 53,
-      "output_index": 1782
+      "output_index": 1897
     },
     {
       "file": "results/demos/episode_0800.gif",
-      "sha256": "07ad49b6f0b41732e68ef237e1aebe9a10cb0711a736886f467dbef592d0931a",
+      "sha256": "c545bb7ac1bc8aac96942cb6c81354dbecf589c566bc6d48a18b842a78a88ff5",
       "cell_index": 53,
-      "output_index": 1844
+      "output_index": 1962
     },
     {
       "file": "results/demos/episode_0825.gif",
-      "sha256": "93d62d312bf356fd5cbd3e82a14d23f09080ce6faa61584930b316ed596df327",
-      "cell_index": 53,
-      "output_index": 1908
-    },
-    {
-      "file": "results/demos/episode_0850.gif",
-      "sha256": "5a0375d5b7f3f6204e453bcc8b8c0652704c9a56b4fbac4e3a708786b0738ea1",
-      "cell_index": 53,
-      "output_index": 1968
-    },
-    {
-      "file": "results/demos/episode_0875.gif",
-      "sha256": "cd54aaf9e401757516e9fee4bedbd950ffb07079b07be3805a4e52b8c88a0be1",
+      "sha256": "56be18b7a0f650939300b528c4a1a4cf4c8ea57b1a675aec2d2be9b46311093e",
       "cell_index": 53,
       "output_index": 2027
     },
     {
-      "file": "results/demos/episode_0900.gif",
-      "sha256": "23b5140d7a135eb43937fc2b4b0ec90cb6fa843e7a7917e2ae79202a89157a29",
+      "file": "results/demos/episode_0850.gif",
+      "sha256": "029492c89f1f46ecc778c4c7139bae7312cf0a5da105d991316e01ca275839fa",
       "cell_index": 53,
-      "output_index": 2090
+      "output_index": 2092
+    },
+    {
+      "file": "results/demos/episode_0875.gif",
+      "sha256": "28b56ad835e40c271c356446e9d30a078072467e98d61dc672649e1905f658f7",
+      "cell_index": 53,
+      "output_index": 2153
+    },
+    {
+      "file": "results/demos/episode_0900.gif",
+      "sha256": "8cbdfa4115134b75da57d6b397ff2dbbfcaea2344f3448ced47d2db83883151b",
+      "cell_index": 53,
+      "output_index": 2215
     },
     {
       "file": "results/demos/episode_0925.gif",
-      "sha256": "d2a4c7ca5e398f9fd98eec75d1aa78cd194130ae2179e58a7ca93855e8da4aae",
+      "sha256": "aa4dff5bdfea19a53f4a76a4209592ae9db07dd21ca0b19bd354675b64b6f2e5",
       "cell_index": 53,
-      "output_index": 2151
+      "output_index": 2278
     },
     {
       "file": "results/demos/episode_0950.gif",
-      "sha256": "0455c6f2c66aec128a4f55557a465fea7a28d43de7ed03772524310d7717959b",
+      "sha256": "dbfcf4d9ae2c61309df613307731dbaa097a51e50a37a1d9375f8a63b988f772",
       "cell_index": 53,
-      "output_index": 2214
+      "output_index": 2345
     },
     {
       "file": "results/demos/episode_0975.gif",
-      "sha256": "8fc04f311c05a7c6440462d0cb9cf35508033b42650fda31280561265136da0b",
+      "sha256": "6f12dd2cc216f11586473f4d3280e95ebc5e52b210424aa4aff0eff8414232e2",
       "cell_index": 53,
-      "output_index": 2276
+      "output_index": 2409
     },
     {
       "file": "results/demos/episode_1000.gif",
-      "sha256": "0493b6a98a96302f3630ecd97ca6016ebc926ec78b3f2285d29df53625f9d8d0",
+      "sha256": "4980c2d2d80e6de256d66014aeeb4166696d4d878bbaa82a02fec05b171749c7",
       "cell_index": 53,
-      "output_index": 2335
+      "output_index": 2472
     },
     {
       "file": "results/demos/episode_1025.gif",
-      "sha256": "fcdd839a39582e10aa98336f7a7cc283310d0cbbe048354d60495944e6c57aa5",
+      "sha256": "c599677a8ceaf8cec1ea2eab84c2b7aff5cf10266a0fb45a050b68babe328e9d",
       "cell_index": 53,
-      "output_index": 2393
+      "output_index": 2537
     },
     {
       "file": "results/demos/episode_1050.gif",
-      "sha256": "f562f13b3a1d9ea41db699f42f116d8f1beac37da67ccd918b36129c36d86671",
+      "sha256": "a696f3d51154c525d575560b66119b7a40159efca8dd8cd3063a0a2691f08f5a",
       "cell_index": 53,
-      "output_index": 2449
-    },
-    {
-      "file": "results/demos/episode_1075.gif",
-      "sha256": "258f8d5423c87ca20e86ee4ef7a0baf1757e8356210c9bca79b883f194253a20",
-      "cell_index": 53,
-      "output_index": 2510
-    },
-    {
-      "file": "results/demos/episode_1100.gif",
-      "sha256": "643909d0c053bfad6160d2b5baec100c353aa9136f3447d60eeaacf4f500ceee",
-      "cell_index": 53,
-      "output_index": 2570
-    },
-    {
-      "file": "results/demos/episode_1125.gif",
-      "sha256": "705865cf98bb2e197815d6cce29dad6f8fc81cb47e253c2c471ea580e774ca8c",
-      "cell_index": 53,
-      "output_index": 2632
-    },
-    {
-      "file": "results/demos/episode_1150.gif",
-      "sha256": "ffabe1280e1052ebb495f4a2b2ef8790dacb10bff36522496a0cd188aa1f9d3f",
-      "cell_index": 53,
-      "output_index": 2695
-    },
-    {
-      "file": "results/demos/episode_1175.gif",
-      "sha256": "fe5bb6bd42611d64bc1ce6dd408e4d50ff3aba2e44e766ea9a964e3f10c83e7f",
-      "cell_index": 53,
-      "output_index": 2756
-    },
-    {
-      "file": "results/demos/episode_1200.gif",
-      "sha256": "f48df4a6795dbf96f697b2b22acaa4af0a151e80f99892910f046780a9fdd219",
-      "cell_index": 53,
-      "output_index": 2817
-    },
-    {
-      "file": "results/demos/episode_1225.gif",
-      "sha256": "1ffbbf4e8af9e688f3718e14ee98449bdbbcbfd3903c1ede442e9ffcb9bf10b1",
-      "cell_index": 53,
-      "output_index": 2877
-    },
-    {
-      "file": "results/demos/episode_1250.gif",
-      "sha256": "05861629f135502fc0cd7de9a5e6238a3990dda8c64a76650357ef5e18b6efcb",
-      "cell_index": 53,
-      "output_index": 2937
-    },
-    {
-      "file": "results/demos/episode_1275.gif",
-      "sha256": "6447da8357066d7db665a8a3bb51c0774a7bd90ecd32066df0ac3e485facdfff",
-      "cell_index": 53,
-      "output_index": 2997
-    },
-    {
-      "file": "results/demos/episode_1300.gif",
-      "sha256": "32d8d614fde21d034272b5c4dc7eacdf9c2188c5eb89e6dd0e62468fbd91df48",
-      "cell_index": 53,
-      "output_index": 3057
-    },
-    {
-      "file": "results/demos/episode_1325.gif",
-      "sha256": "0551b80819240b7bbbf878182f4c86610b5e138b321f2df8bca2bbf45e1c21c8",
-      "cell_index": 53,
-      "output_index": 3117
-    },
-    {
-      "file": "results/demos/episode_1350.gif",
-      "sha256": "e08498dcbbfd72162175f527134ba2e5526b698074745f31a3f8ab8eec2ef0ac",
-      "cell_index": 53,
-      "output_index": 3178
-    },
-    {
-      "file": "results/demos/episode_1375.gif",
-      "sha256": "08ed9caa993d7c0d032ac7e53eb64ba1b137d5c488ec04a8035cb17b79d4b796",
-      "cell_index": 53,
-      "output_index": 3238
-    },
-    {
-      "file": "results/demos/episode_1400.gif",
-      "sha256": "1473473e8beb5f78abeda73261e261a958e5205cef7e42ae9aa9d5fa22611de0",
-      "cell_index": 53,
-      "output_index": 3301
-    },
-    {
-      "file": "results/demos/episode_1425.gif",
-      "sha256": "34862f08d2fc5e6d74d5ecd2d4a4def49d063669bee0aca208f4f7ed90f7866f",
-      "cell_index": 53,
-      "output_index": 3363
-    },
-    {
-      "file": "results/demos/episode_1450.gif",
-      "sha256": "df54b7c2345122cbe3edf85860f4179d5617713355d57f8faf7dc6698f3f43c4",
-      "cell_index": 53,
-      "output_index": 3423
-    },
-    {
-      "file": "results/demos/episode_1475.gif",
-      "sha256": "6a0d364d1cfa2426ed5d18f333e4e97106cbe3cfac323eb1613a3577268803e6",
-      "cell_index": 53,
-      "output_index": 3485
-    },
-    {
-      "file": "results/demos/episode_1500.gif",
-      "sha256": "449354f0d4d1e772d6ce451d3cbe565a0bf827b359480bec74d54a25ec5a8ca2",
-      "cell_index": 53,
-      "output_index": 3548
-    },
-    {
-      "file": "results/demos/episode_1525.gif",
-      "sha256": "dc0b22cdd37b76f4d87320914ab7515e3a88ba6b5b88430c0d88caf025ad615a",
-      "cell_index": 53,
-      "output_index": 3611
-    },
-    {
-      "file": "results/demos/episode_1550.gif",
-      "sha256": "f9ef6ca2e67f00b0b04838b39e8e44b4cd2ffb62a80da2867efb634a104e2bc3",
-      "cell_index": 53,
-      "output_index": 3674
-    },
-    {
-      "file": "results/demos/episode_1575.gif",
-      "sha256": "9f7154ef9f5ac7f7ab251ec90575d22221f783dfb02334631093680acc75653e",
-      "cell_index": 53,
-      "output_index": 3737
-    },
-    {
-      "file": "results/demos/episode_1600.gif",
-      "sha256": "24d21a980afc272abe8be3bbb80c8ace4599dac2063b4680ed911ab04cca57f6",
-      "cell_index": 53,
-      "output_index": 3799
-    },
-    {
-      "file": "results/demos/episode_1625.gif",
-      "sha256": "667cfa74738010fea15cacfa173e3e81e48909c1fc46b7502dd73f1f94021ce0",
-      "cell_index": 53,
-      "output_index": 3864
-    },
-    {
-      "file": "results/demos/episode_1650.gif",
-      "sha256": "81cc24e6a11f47e16a59be9757c6db5155c165d6f1764b0e4f255a0d7af5c96b",
-      "cell_index": 53,
-      "output_index": 3926
-    },
-    {
-      "file": "results/demos/episode_1675.gif",
-      "sha256": "2dfe614281520ea57f130128fe9cc9af9556d8d4c4f3bfdc2a55038281e90b16",
-      "cell_index": 53,
-      "output_index": 3986
-    },
-    {
-      "file": "results/demos/episode_1700.gif",
-      "sha256": "cf3fe9d9a0b214b52f44ee30dc06907852798982ceb20dda6fa31e717a3a0d8b",
-      "cell_index": 53,
-      "output_index": 4050
-    },
-    {
-      "file": "results/demos/episode_1725.gif",
-      "sha256": "dc31fe8320c2052a427052af9e23a459162f4ce017ac1073ff053d5d77ac4807",
-      "cell_index": 53,
-      "output_index": 4113
-    },
-    {
-      "file": "results/demos/episode_1750.gif",
-      "sha256": "a93806884961f090c8eb83b3a9f85ddca206ba84f56998015052581c6235462d",
-      "cell_index": 53,
-      "output_index": 4177
-    },
-    {
-      "file": "results/demos/episode_1775.gif",
-      "sha256": "5e26ca3791462e798759c031b2746dfdb365d4a571cc900c3ad209fc1d6a4450",
-      "cell_index": 53,
-      "output_index": 4239
-    },
-    {
-      "file": "results/demos/episode_1800.gif",
-      "sha256": "856ce9399977b7a1c8d8959130011c2619a82e408646e179948dd8d07cba33c9",
-      "cell_index": 53,
-      "output_index": 4301
-    },
-    {
-      "file": "results/demos/episode_1825.gif",
-      "sha256": "ab1e2cd92517dcfc7701594493ef20321169d4256543c21e6ce3c89dff18d74b",
-      "cell_index": 53,
-      "output_index": 4363
-    },
-    {
-      "file": "results/demos/episode_1850.gif",
-      "sha256": "cae07a39d43c78dd604a2ae66c52f1bc7a67ed0d4c287ee9d49c0bfe21160f95",
-      "cell_index": 53,
-      "output_index": 4425
-    },
-    {
-      "file": "results/demos/episode_1875.gif",
-      "sha256": "8cd4bca856f0ca20c439d5dae0811e8fc1201561e1c90a43086729c4d3a14a86",
-      "cell_index": 53,
-      "output_index": 4484
-    },
-    {
-      "file": "results/demos/episode_1900.gif",
-      "sha256": "b511f96017022610eb6f940ff6354b48b3233a0be5b1e9e34b4025a5e482a333",
-      "cell_index": 53,
-      "output_index": 4548
-    },
-    {
-      "file": "results/demos/episode_1925.gif",
-      "sha256": "6d45ebb3025a120c07aa5894a57bcc71d93615e62cc9a8a213582e528a65449f",
-      "cell_index": 53,
-      "output_index": 4610
-    },
-    {
-      "file": "results/demos/episode_1950.gif",
-      "sha256": "bef58eb1f25546680526a8e640a940e873e4ebc6b18cda826d5c80d2a7f890a8",
-      "cell_index": 53,
-      "output_index": 4677
-    },
-    {
-      "file": "results/demos/episode_1975.gif",
-      "sha256": "14d89504f9e835a6bd650e9f547c1ba8fbb8b4f56c5c2baf237e67b5c369b03b",
-      "cell_index": 53,
-      "output_index": 4745
-    },
-    {
-      "file": "results/demos/episode_2000.gif",
-      "sha256": "f0e505f27d229d8358e362dbcd90d065edfd6f8128556896f1d6415787cee7d1",
-      "cell_index": 53,
-      "output_index": 4809
+      "output_index": 2602
     },
     {
       "file": "results/demos/final_best.gif",
-      "sha256": "acca3caa4e19a05af0b5408506e1584f9f82eeda9e7cfb8330043de756680bfa",
+      "sha256": "64e1d51ec8adcee64f796cc6a225718e7d9cdade9f02f48e94bf5bf582aa2635",
       "cell_index": 58,
       "output_index": 3
     }
   ],
   "github_gif_display": "HTML image representations added; original embedded GIF data and all other outputs preserved.",
   "evidence_files_sha256": {
-    "config.json": "28c4df34c7f5f73de8703bf7417582e6092ec6cf20176269f723d4b39343914e",
+    "config.json": "730046ffe898e2c5145e135c4009bc9919a3a2b9d610d5fd9a232e406f11e35e",
     "baseline.json": "4c2eaa6201eac3e1cd76f06276b12ee25dde8e65392aa3f73d3e9dfb5290d347",
-    "comparison.json": "ed9db8c1e7fce6e4ff6ab94253d1fe5f6196e9af20055b52dbb83103dd1efe69",
-    "training.csv": "6e6d317cfbb58de80c90ae3581364eb3b379ed7f541e8213d98c5e9e2d8373ee",
-    "training_summary.json": "0cc88740e1acb4d071f1cad7ab02aa4bcdccc73c8a36b19ef3c4c281dc943aba",
-    "demo_scores.json": "a473821c549dae36da939d15eb903af1898fc43dfec0476b068c3eca6252e1d3",
-    "training_dashboard.png": "61448c1fc16dcc67f7d1f3d9cdd6d599830f155d240d444059d6ff4612b2a226"
+    "comparison.json": "d107832f862c65473c90c869d68510d96e811bde1093a20db47a303736ab7de3",
+    "training.csv": "45111e1c3cba546ea2f2a61ec732275b8445452c5ad861a3a5556e3a01461e54",
+    "training_summary.json": "f8392da9543d9f81a99f4424f15390103177c6748228a539bb73ad47d6b459bb",
+    "demo_scores.json": "8ecc1c22e4e2dd19298a035c1f54bdb9b8f79226c80175e67a5d19dfd9d34b7e",
+    "training_dashboard.png": "aca1cedfb4057e14f48ec1e3df09530b809811aa360e5cfc0a9008259f476485"
   }
 }

@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import ast
 import base64
+import copy
 import csv
 from datetime import datetime, timezone
 import hashlib
@@ -29,6 +30,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL = ROOT / "experiments" / "original_100"
+CLIPPED_REFERENCE = ROOT / "experiments" / "clipped_2000"
 PUBLIC_RAW = "https://raw.githubusercontent.com/sbardacosta-code/class-3-pacman-dqn/main/"
 REQUIRED_FILES = (
     "config.json", "baseline.json", "comparison.json", "training.csv",
@@ -46,10 +48,16 @@ UNCHANGED_SETTINGS = (
     "noop_max", "grayscale_size", "stack_size", "terminal_on_life_loss",
     "max_decisions_per_game", "warmup_decisions", "batch_size",
     "train_every_decisions", "target_sync_decisions", "gamma",
-    "training_reward_clipping", "eval_exploration", "eval_seeds",
+    "eval_exploration", "eval_seeds",
     "preview_seconds", "preview_speed", "preview_plays", "preview_stride",
     "preview_frame_ms",
 )
+REWARD_FIELDS = {
+    "training_reward_clipping", "training_reward_scale",
+    "training_reward_transform", "training_death_penalty",
+}
+RUNTIME_FIELDS = {"device", "python", "platform", "packages"}
+SCALED_REWARD_DESCRIPTION = "raw_points * 0.01 (no clipping)"
 
 
 def require(condition: bool, message: str) -> None:
@@ -123,6 +131,211 @@ def assignment_values(cell: dict) -> dict:
     return values
 
 
+def reconcile_learning_updates(summary: dict, config: dict) -> dict:
+    """Keep the recorded counter; disclose one possible interrupted update."""
+    frequency = config["train_every_decisions"]
+    scheduled = max(0, summary["total_decisions"] // frequency
+                    - math.ceil(config["warmup_decisions"] / frequency) + 1)
+    recorded = summary["learning_updates"]
+    gap = scheduled - recorded
+    interruption_gap = (summary["status"] == "interrupted" and gap == 1
+                        and summary["total_decisions"] % frequency == 0)
+    require(gap == 0 or interruption_gap,
+            f"Unexpected update count: {recorded} recorded vs {scheduled} scheduled")
+    return {
+        "scheduled_learning_updates": scheduled,
+        "recorded_learning_updates": recorded,
+        "scheduled_minus_recorded": gap,
+        "interrupted_update_completion_uncertain": interruption_gap,
+        "explanation": (
+            "The decision counter advances before learn() and the update counter advances "
+            "after learn() returns. Interruption at an update boundary left one scheduled "
+            "update unrecorded; whether its optimizer step started or completed is unknown. "
+            "The recorded update count is preserved, not increased."
+            if interruption_gap else "The recorded update count matches scheduled updates."
+        ),
+    }
+
+
+def ast_key(node: ast.AST) -> str:
+    """Compare code structure while allowing comments and formatting to differ."""
+    return ast.dump(node, include_attributes=False)
+
+
+def cell_code_key(cell: dict) -> str:
+    code = source(cell)
+    # The unchanged package-install cell contains IPython syntax, not Python.
+    return code if code.lstrip().startswith("%") else ast_key(ast.parse(code))
+
+
+def config_dictionary(tree: ast.Module) -> ast.Dict:
+    assignments = [node for node in tree.body if isinstance(node, ast.Assign)
+                   and len(node.targets) == 1
+                   and isinstance(node.targets[0], ast.Name)
+                   and node.targets[0].id == "config"]
+    require(len(assignments) == 1 and isinstance(assignments[0].value, ast.Dict),
+            "Expected one config dictionary assignment in the settings-record cell.")
+    return assignments[0].value
+
+
+def replay_tuple(tree: ast.Module) -> ast.Tuple:
+    calls = [node for node in ast.walk(tree) if isinstance(node, ast.Call)
+             and isinstance(node.func, ast.Attribute) and node.func.attr == "append"
+             and ast_key(node.func.value) == ast_key(ast.parse("self.items", mode="eval").body)]
+    require(len(calls) == 1 and len(calls[0].args) == 1
+            and isinstance(calls[0].args[0], ast.Tuple)
+            and len(calls[0].args[0].elts) == 6,
+            "Replay transition storage no longer matches the supplied six-field tuple.")
+    return calls[0].args[0]
+
+
+def verify_reward_experiment(notebook: dict, config: dict) -> tuple[dict, dict | None]:
+    """Verify the selected reward rule and isolate scaled-reward code changes.
+
+    Returns reward evidence and, for the scaled experiment, preserved comparator
+    evidence. This never executes notebook code or mutates any experiment files.
+    """
+    replay = ast.parse(source(notebook["cells"][19]))
+    stored_reward = replay_tuple(replay).elts[2]
+    clipping = config.get("training_reward_clipping")
+    if clipping == [-1, 1]:
+        require(config.get("training_reward_scale", 1.0) == 1.0,
+                "Clipped-mode config unexpectedly scales training rewards.")
+        require(config.get("training_death_penalty", 0.0) == 0.0,
+                "A death penalty was not authorized for the clipped experiment.")
+        require(ast_key(stored_reward) == ast_key(ast.parse(
+                    "float(np.clip(reward, -1, 1))", mode="eval").body),
+                "Clipped reward config does not match replay storage source.")
+        return ({"mode": "clipped", "clipping": [-1, 1], "scale": 1.0,
+                 "transform": "clip(raw_points, -1, 1)", "death_penalty": 0.0,
+                 "source_and_config_verified": True}, None)
+
+    require("training_reward_clipping" in config and clipping is None,
+            "Scaled rewards require an explicit null training_reward_clipping.")
+    require(config.get("training_reward_scale") == 0.01,
+            "Scaled reward config must record training_reward_scale = 0.01.")
+    require(config.get("training_reward_transform") == SCALED_REWARD_DESCRIPTION,
+            "Scaled reward config must describe raw_points * 0.01 without clipping.")
+    require(config.get("training_death_penalty") == 0.0,
+            "Scaled reward config must explicitly record zero added death penalty.")
+    require(ast_key(stored_reward) == ast_key(ast.parse(
+                "float(reward * TRAINING_REWARD_SCALE)", mode="eval").body),
+            "Replay storage is not exactly raw reward times TRAINING_REWARD_SCALE.")
+    require(assignment_values(notebook["cells"][10]).get("TRAINING_REWARD_SCALE") == 0.01,
+            "The notebook reward-scale constant must be 0.01.")
+
+    reference_nb_path = CLIPPED_REFERENCE / "pacman_dqn.ipynb"
+    require(reference_nb_path.is_file(), "Preserve the clipped 2,000-episode experiment first.")
+    previous_nb = load_json(reference_nb_path)
+    previous_config = load_json(CLIPPED_REFERENCE / "results" / "config.json")
+    previous_comparison = load_json(CLIPPED_REFERENCE / "results" / "comparison.json")
+    previous_summary = load_json(CLIPPED_REFERENCE / "results" / "training_summary.json")
+    previous_verification = load_json(CLIPPED_REFERENCE / "results" / "verification.json")
+    require(previous_config["training_reward_clipping"] == [-1, 1],
+            "The preserved comparison experiment is not the clipped-reward run.")
+    require(len(previous_nb["cells"]) == len(notebook["cells"]),
+            "Cell count changed relative to the clipped-reward experiment.")
+    previous_settings = {k: v for k, v in previous_config.items()
+                         if k not in REWARD_FIELDS | RUNTIME_FIELDS}
+    current_settings = {k: v for k, v in config.items()
+                        if k not in REWARD_FIELDS | RUNTIME_FIELDS}
+    require(current_settings == previous_settings,
+            "A non-reward training/evaluation setting changed versus clipped_2000.")
+
+    # Every code cell must have the same AST except the explicit scale constant,
+    # replay reward expression, and descriptive reward config entries.
+    changed_code_cells = []
+    for index, (previous_cell, current_cell) in enumerate(zip(previous_nb["cells"], notebook["cells"])):
+        require(previous_cell["cell_type"] == current_cell["cell_type"],
+                f"Cell type changed versus clipped_2000 at index {index}.")
+        if current_cell["cell_type"] != "code":
+            continue
+        if cell_code_key(previous_cell) != cell_code_key(current_cell):
+            changed_code_cells.append(index)
+            require(index in {10, 19, 43},
+                    f"Unexpected code change versus clipped_2000 in cell {index}.")
+    require(set(changed_code_cells) == {10, 19, 43},
+            f"Expected only reward-related cells 10, 19, 43 to change; got {changed_code_cells}.")
+
+    fixed_tree = ast.parse(source(notebook["cells"][10]))
+    scale_statements = [node for node in fixed_tree.body if isinstance(node, ast.Assign)
+                        and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name)
+                        and node.targets[0].id == "TRAINING_REWARD_SCALE"]
+    require(len(scale_statements) == 1, "Expected exactly one reward-scale constant.")
+    fixed_tree.body.remove(scale_statements[0])
+    require(ast_key(fixed_tree) == ast_key(ast.parse(source(previous_nb["cells"][10]))),
+            "Fixed settings source changed beyond adding the reward-scale constant.")
+
+    previous_replay = ast.parse(source(previous_nb["cells"][19]))
+    normalized_replay = copy.deepcopy(replay)
+    replay_tuple(normalized_replay).elts[2] = copy.deepcopy(replay_tuple(previous_replay).elts[2])
+    require(ast_key(normalized_replay) == ast_key(previous_replay),
+            "Replay source changed beyond the stored reward expression.")
+
+    previous_config_tree = ast.parse(source(previous_nb["cells"][43]))
+    current_config_tree = ast.parse(source(notebook["cells"][43]))
+    current_dictionary = config_dictionary(current_config_tree)
+    key_names = [ast.literal_eval(key) for key in current_dictionary.keys]
+    require(len(set(key_names)) == len(key_names), "The recorded config has duplicate keys.")
+    config_nodes = dict(zip(key_names, current_dictionary.values))
+    expected_nodes = {
+        "training_reward_clipping": "None",
+        "training_reward_scale": "TRAINING_REWARD_SCALE",
+        "training_reward_transform": repr(SCALED_REWARD_DESCRIPTION),
+        "training_death_penalty": "0.0",
+    }
+    for key, expected in expected_nodes.items():
+        require(key in config_nodes and ast_key(config_nodes[key]) == ast_key(ast.parse(expected, mode="eval").body),
+                f"Notebook config source does not faithfully record {key}.")
+    for tree in (previous_config_tree, current_config_tree):
+        dictionary = config_dictionary(tree)
+        retained = [(key, value) for key, value in zip(dictionary.keys, dictionary.values)
+                    if ast.literal_eval(key) not in REWARD_FIELDS]
+        dictionary.keys = [key for key, _ in retained]
+        dictionary.values = [value for _, value in retained]
+    require(ast_key(previous_config_tree) == ast_key(current_config_tree),
+            "Settings-record source changed beyond reward metadata.")
+
+    # Confirm preservation before the finished new run replaces root evidence.
+    reference_notebook_hash = sha256_file(reference_nb_path)
+    require(reference_notebook_hash == previous_verification["notebook_sha256"],
+            "The preserved clipped-run notebook no longer matches its saved hash.")
+    previous_archive = ROOT / previous_verification["archive"]
+    require(previous_archive.is_file(), "The previous full local ZIP is missing.")
+    require(sha256_file(previous_archive) == previous_verification["archive_sha256"],
+            "The previous full local ZIP no longer matches its saved hash.")
+    for filename, expected_hash in previous_verification["evidence_files_sha256"].items():
+        require(sha256_file(CLIPPED_REFERENCE / "results" / filename) == expected_hash,
+                f"Preserved clipped-run evidence changed: {filename}")
+    for key in ("seeds", "scores", "mean"):
+        require(previous_comparison["before"][key] is not None,
+                f"Preserved comparison lacks its untrained {key}.")
+
+    reward_evidence = {
+        "mode": "scaled_raw_points", "clipping": None, "scale": 0.01,
+        "transform": SCALED_REWARD_DESCRIPTION, "death_penalty": 0.0,
+        "source_and_config_verified": True,
+        "only_reward_training_setting_changed_vs_clipped_2000": True,
+        "changed_code_cells_vs_clipped_2000_zero_based": changed_code_cells,
+    }
+    reference = {
+        "notebook": relative(reference_nb_path),
+        "notebook_sha256": reference_notebook_hash,
+        "runtime_field_differences": {
+            key: {"previous": previous_config.get(key), "current": config.get(key)}
+            for key in sorted(RUNTIME_FIELDS)
+            if previous_config.get(key) != config.get(key)
+        },
+        "config": previous_config,
+        "config_sha256": sha256_file(CLIPPED_REFERENCE / "results" / "config.json"),
+        "comparison": previous_comparison, "summary": previous_summary,
+        "archive": relative(previous_archive),
+        "archive_sha256": previous_verification["archive_sha256"],
+        "preserved_archive_and_evidence_verified": True,
+    }
+    return reward_evidence, reference
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, required=True,
@@ -172,6 +385,7 @@ def main() -> None:
                       ("MAX_STEPS", "max_decisions_per_game"),
                       ("REPLAY_CAPACITY", "replay_capacity")):
         require(fixed[name] == config[key], f"Notebook/config mismatch: {name}")
+    reward_evidence, clipped_reference = verify_reward_experiment(notebook, config)
     streams = "\n".join(
         "".join(output.get("text", ""))
         for cell in code_cells for output in cell.get("outputs", [])
@@ -214,12 +428,7 @@ def main() -> None:
     if summary["status"] == "completed":
         require(completed == config["episodes_requested"], "Early stop falsely marked completed.")
         require(summary["total_decisions"] == running_steps, "Completed run has partial episode.")
-    warmup = config["warmup_decisions"]
-    frequency = config["train_every_decisions"]
-    expected_updates = max(0, summary["total_decisions"] // frequency
-                           - math.ceil(warmup / frequency) + 1)
-    require(summary["learning_updates"] == expected_updates,
-            f"Unexpected update count: {summary['learning_updates']} vs {expected_updates}")
+    update_count_reconciliation = reconcile_learning_updates(summary, config)
 
     demo_every = fixed["DEMO_EVERY"]
     periodic_episodes = list(range(demo_every, completed + 1, demo_every))
@@ -296,6 +505,8 @@ def main() -> None:
     report = {
         "run_id": run.name, "run_directory": relative(run),
         "archive": relative(archive), "config": config, "summary": summary,
+        "training_reward": reward_evidence,
+        "update_count_reconciliation": update_count_reconciliation,
         "zero_learning_updates": summary["learning_updates"] == 0,
         "ended_before_episode_budget": completed < config["episodes_requested"],
         "partial_episode_decisions": summary["total_decisions"] - running_steps,
@@ -325,6 +536,33 @@ def main() -> None:
         "gifs": ["results/demos/" + name for name in expected_gifs],
         "checkpoints_in_local_zip": checkpoint_names,
     }
+    if clipped_reference is not None:
+        previous_after = clipped_reference["comparison"]["after"]
+        require(previous_after["seeds"] == after["seeds"],
+                "Scaled and clipped experiments used different evaluation seeds.")
+        previous_mean = previous_after["mean"]
+        changes_vs_clipped = [new - previous for new, previous
+                              in zip(after["scores"], previous_after["scores"])]
+        report["clipped_2000_reference"] = clipped_reference
+        report["runtime_field_differences_vs_clipped_2000"] = clipped_reference["runtime_field_differences"]
+        report["comparison_to_clipped_2000"] = {
+            "comparison_json": "experiments/clipped_2000/results/comparison.json",
+            "previous_mean_score": previous_mean,
+            "new_mean_score": after["mean"],
+            "mean_score_change": after["mean"] - previous_mean,
+            "mean_score_change_percent": (
+                100 * (after["mean"] - previous_mean) / previous_mean
+                if previous_mean else None
+            ),
+            "mean_score_multiple": after["mean"] / previous_mean if previous_mean else None,
+            "seeds": after["seeds"], "previous_scores": previous_after["scores"],
+            "new_scores": after["scores"], "score_changes": changes_vs_clipped,
+            "improved_games": sum(delta > 0 for delta in changes_vs_clipped),
+            "worsened_games": sum(delta < 0 for delta in changes_vs_clipped),
+            "unchanged_games": sum(delta == 0 for delta in changes_vs_clipped),
+            "previous_training_budget": clipped_reference["summary"],
+            "new_training_budget": summary,
+        }
     changed_cells = [index for index, (old, new) in enumerate(zip(original_sources, current_sources))
                      if old != new]
     old_provenance = load_json(ORIGINAL / "results" / "provenance.json")
@@ -340,12 +578,20 @@ def main() -> None:
             "algorithm": config.get("algorithm", "DQN"),
             "replay_capacity": config["replay_capacity"],
             "training_time_limit_seconds": config.get("training_time_limit_seconds"),
+            "training_reward": reward_evidence,
         },
         "evaluation_and_preprocessing_cells_unchanged": UNCHANGED_CELLS,
         "execution": "Local Jupyter kernel through nbclient; all 28 code cells executed in order",
         "run_id": run.name,
         "display_only_postprocessing": "Added HTML image representations to byte-matched GIF outputs; all embedded GIF bytes and other outputs retained.",
     }
+    if clipped_reference is not None:
+        provenance["training_comparison_reference"] = {
+            key: value for key, value in clipped_reference.items()
+            if key not in {"config", "comparison", "summary"}
+        }
+        provenance["only_reward_training_setting_changed_vs_clipped_2000"] = True
+        provenance["runtime_field_differences_vs_clipped_2000"] = clipped_reference["runtime_field_differences"]
 
     # Nothing above mutates files. Only publish evidence after every check passes.
     results = ROOT / "results"
@@ -376,6 +622,8 @@ def main() -> None:
         "execution_counts": counts, "notebook_error_outputs": 0,
         "evaluation_settings_unchanged": True,
         "evaluation_and_preprocessing_source_unchanged": True,
+        "update_count_reconciliation": update_count_reconciliation,
+        "training_reward": reward_evidence,
         "cell_sources_match_original": not changed_cells,
         "all_model_weights_finite": finite,
         "trained_weights_differ_from_baseline": changed,

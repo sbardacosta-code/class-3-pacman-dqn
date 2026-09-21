@@ -1,0 +1,808 @@
+{
+  "verified_at_utc": "2026-09-16T05:17:16.696984+00:00",
+  "run_id": "20260915_203342_502034",
+  "executed_code_cells": 28,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "notebook_error_outputs": 0,
+  "evaluation_settings_unchanged": true,
+  "evaluation_and_preprocessing_source_unchanged": true,
+  "cell_sources_match_original": false,
+  "all_model_weights_finite": true,
+  "trained_weights_differ_from_baseline": true,
+  "archive": "pacman_runs/20260915_203342_502034.zip",
+  "archive_sha256": "7031d77dfceec01acaf45f348a731b88c381d4f0975849933808b94a3bf98056",
+  "archive_integrity": "passed",
+  "archive_members_byte_matched_to_local_files": [
+    "config.json",
+    "baseline.json",
+    "comparison.json",
+    "training.csv",
+    "training_summary.json",
+    "demo_scores.json",
+    "training_dashboard.png",
+    "untrained.pt",
+    "trained.pt",
+    "episode_0025.pt",
+    "episode_0050.pt",
+    "episode_0075.pt",
+    "episode_0100.pt",
+    "episode_0125.pt",
+    "episode_0150.pt",
+    "episode_0175.pt",
+    "episode_0200.pt",
+    "episode_0225.pt",
+    "episode_0250.pt",
+    "episode_0275.pt",
+    "episode_0300.pt",
+    "episode_0325.pt",
+    "episode_0350.pt",
+    "episode_0375.pt",
+    "episode_0400.pt",
+    "episode_0425.pt",
+    "episode_0450.pt",
+    "episode_0475.pt",
+    "episode_0500.pt",
+    "episode_0525.pt",
+    "episode_0550.pt",
+    "episode_0575.pt",
+    "episode_0600.pt",
+    "episode_0625.pt",
+    "episode_0650.pt",
+    "episode_0675.pt",
+    "episode_0700.pt",
+    "episode_0725.pt",
+    "episode_0750.pt",
+    "episode_0775.pt",
+    "episode_0800.pt",
+    "episode_0825.pt",
+    "episode_0850.pt",
+    "episode_0875.pt",
+    "episode_0900.pt",
+    "episode_0925.pt",
+    "episode_0950.pt",
+    "episode_0975.pt",
+    "episode_1000.pt",
+    "episode_1025.pt",
+    "episode_1050.pt",
+    "episode_1075.pt",
+    "episode_1100.pt",
+    "episode_1125.pt",
+    "episode_1150.pt",
+    "episode_1175.pt",
+    "episode_1200.pt",
+    "episode_1225.pt",
+    "episode_1250.pt",
+    "episode_1275.pt",
+    "episode_1300.pt",
+    "episode_1325.pt",
+    "episode_1350.pt",
+    "episode_1375.pt",
+    "episode_1400.pt",
+    "episode_1425.pt",
+    "episode_1450.pt",
+    "episode_1475.pt",
+    "episode_1500.pt",
+    "episode_1525.pt",
+    "episode_1550.pt",
+    "episode_1575.pt",
+    "episode_1600.pt",
+    "episode_1625.pt",
+    "episode_1650.pt",
+    "episode_1675.pt",
+    "episode_1700.pt",
+    "episode_1725.pt",
+    "episode_1750.pt",
+    "episode_1775.pt",
+    "episode_1800.pt",
+    "episode_1825.pt",
+    "episode_1850.pt",
+    "episode_1875.pt",
+    "episode_1900.pt",
+    "episode_1925.pt",
+    "episode_1950.pt",
+    "episode_1975.pt",
+    "episode_2000.pt",
+    "demos/episode_0000.gif",
+    "demos/episode_0025.gif",
+    "demos/episode_0050.gif",
+    "demos/episode_0075.gif",
+    "demos/episode_0100.gif",
+    "demos/episode_0125.gif",
+    "demos/episode_0150.gif",
+    "demos/episode_0175.gif",
+    "demos/episode_0200.gif",
+    "demos/episode_0225.gif",
+    "demos/episode_0250.gif",
+    "demos/episode_0275.gif",
+    "demos/episode_0300.gif",
+    "demos/episode_0325.gif",
+    "demos/episode_0350.gif",
+    "demos/episode_0375.gif",
+    "demos/episode_0400.gif",
+    "demos/episode_0425.gif",
+    "demos/episode_0450.gif",
+    "demos/episode_0475.gif",
+    "demos/episode_0500.gif",
+    "demos/episode_0525.gif",
+    "demos/episode_0550.gif",
+    "demos/episode_0575.gif",
+    "demos/episode_0600.gif",
+    "demos/episode_0625.gif",
+    "demos/episode_0650.gif",
+    "demos/episode_0675.gif",
+    "demos/episode_0700.gif",
+    "demos/episode_0725.gif",
+    "demos/episode_0750.gif",
+    "demos/episode_0775.gif",
+    "demos/episode_0800.gif",
+    "demos/episode_0825.gif",
+    "demos/episode_0850.gif",
+    "demos/episode_0875.gif",
+    "demos/episode_0900.gif",
+    "demos/episode_0925.gif",
+    "demos/episode_0950.gif",
+    "demos/episode_0975.gif",
+    "demos/episode_1000.gif",
+    "demos/episode_1025.gif",
+    "demos/episode_1050.gif",
+    "demos/episode_1075.gif",
+    "demos/episode_1100.gif",
+    "demos/episode_1125.gif",
+    "demos/episode_1150.gif",
+    "demos/episode_1175.gif",
+    "demos/episode_1200.gif",
+    "demos/episode_1225.gif",
+    "demos/episode_1250.gif",
+    "demos/episode_1275.gif",
+    "demos/episode_1300.gif",
+    "demos/episode_1325.gif",
+    "demos/episode_1350.gif",
+    "demos/episode_1375.gif",
+    "demos/episode_1400.gif",
+    "demos/episode_1425.gif",
+    "demos/episode_1450.gif",
+    "demos/episode_1475.gif",
+    "demos/episode_1500.gif",
+    "demos/episode_1525.gif",
+    "demos/episode_1550.gif",
+    "demos/episode_1575.gif",
+    "demos/episode_1600.gif",
+    "demos/episode_1625.gif",
+    "demos/episode_1650.gif",
+    "demos/episode_1675.gif",
+    "demos/episode_1700.gif",
+    "demos/episode_1725.gif",
+    "demos/episode_1750.gif",
+    "demos/episode_1775.gif",
+    "demos/episode_1800.gif",
+    "demos/episode_1825.gif",
+    "demos/episode_1850.gif",
+    "demos/episode_1875.gif",
+    "demos/episode_1900.gif",
+    "demos/episode_1925.gif",
+    "demos/episode_1950.gif",
+    "demos/episode_1975.gif",
+    "demos/episode_2000.gif",
+    "demos/final_best.gif"
+  ],
+  "expected_periodic_checkpoints_present": [
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250,
+    275,
+    300,
+    325,
+    350,
+    375,
+    400,
+    425,
+    450,
+    475,
+    500,
+    525,
+    550,
+    575,
+    600,
+    625,
+    650,
+    675,
+    700,
+    725,
+    750,
+    775,
+    800,
+    825,
+    850,
+    875,
+    900,
+    925,
+    950,
+    975,
+    1000,
+    1025,
+    1050,
+    1075,
+    1100,
+    1125,
+    1150,
+    1175,
+    1200,
+    1225,
+    1250,
+    1275,
+    1300,
+    1325,
+    1350,
+    1375,
+    1400,
+    1425,
+    1450,
+    1475,
+    1500,
+    1525,
+    1550,
+    1575,
+    1600,
+    1625,
+    1650,
+    1675,
+    1700,
+    1725,
+    1750,
+    1775,
+    1800,
+    1825,
+    1850,
+    1875,
+    1900,
+    1925,
+    1950,
+    1975,
+    2000
+  ],
+  "notebook_sha256": "2011603f6b2abf2ccddcf5b2f7595215d9b1de1dc27159d88b43e6393c2e20dc",
+  "gif_output_count": 82,
+  "gif_matches": [
+    {
+      "file": "results/demos/episode_0000.gif",
+      "sha256": "b811a8d2fd796ddf981376ef314ff739787e7e475ebb7c590a273a422be48079",
+      "cell_index": 45,
+      "output_index": 2
+    },
+    {
+      "file": "results/demos/episode_0025.gif",
+      "sha256": "a50b6e087c5e08527b0a9735bfbdb4e2d545a01d945f576603ec683727be019d",
+      "cell_index": 53,
+      "output_index": 55
+    },
+    {
+      "file": "results/demos/episode_0050.gif",
+      "sha256": "95293a8f42720e2fe2bbd4ecde412a447ad81c8638b80d378ae4973c2fae9c07",
+      "cell_index": 53,
+      "output_index": 113
+    },
+    {
+      "file": "results/demos/episode_0075.gif",
+      "sha256": "086b6d1cc9f1737d28e236b60ca48d42dd3442c2fae2e6a9ba1a1182ffa661bc",
+      "cell_index": 53,
+      "output_index": 168
+    },
+    {
+      "file": "results/demos/episode_0100.gif",
+      "sha256": "3487ea91532d8fb25bd2111a293521d3d613577fb926f41b1afc6edb17af8790",
+      "cell_index": 53,
+      "output_index": 227
+    },
+    {
+      "file": "results/demos/episode_0125.gif",
+      "sha256": "0b192539ea68e7d47be2efab3ca2e1b9ad8bf7c716494bdd88327cb1f219822b",
+      "cell_index": 53,
+      "output_index": 284
+    },
+    {
+      "file": "results/demos/episode_0150.gif",
+      "sha256": "67e8fd7580a0e0df9c47d8d473ebd23e7e92e83ee76f7fcec6030778b96d09b6",
+      "cell_index": 53,
+      "output_index": 343
+    },
+    {
+      "file": "results/demos/episode_0175.gif",
+      "sha256": "c1bc3fb7835117655c857dd310f67fee401e3576d45988833a2b6cc60dc7c560",
+      "cell_index": 53,
+      "output_index": 402
+    },
+    {
+      "file": "results/demos/episode_0200.gif",
+      "sha256": "4439db5be8b5ff759919d29ec4ef8a47ad324084e323ce83576a1938cb4c1560",
+      "cell_index": 53,
+      "output_index": 461
+    },
+    {
+      "file": "results/demos/episode_0225.gif",
+      "sha256": "1cdd1411b1b63363311670e055fd7aaf68062036aba291f0f6c8fbbef6ed8206",
+      "cell_index": 53,
+      "output_index": 518
+    },
+    {
+      "file": "results/demos/episode_0250.gif",
+      "sha256": "ba07ab5a1051911b84ef83655c54ee26d51e19bbe406cc88ac64136d924b504c",
+      "cell_index": 53,
+      "output_index": 577
+    },
+    {
+      "file": "results/demos/episode_0275.gif",
+      "sha256": "eca9e87bc15c7197be1c9bb31f4994735aa5c6a060929591569dd0529d338238",
+      "cell_index": 53,
+      "output_index": 637
+    },
+    {
+      "file": "results/demos/episode_0300.gif",
+      "sha256": "da03d1503965f7d5d9dca36dba08b5b1dc8432ce0d864794d88ccb5e73121862",
+      "cell_index": 53,
+      "output_index": 695
+    },
+    {
+      "file": "results/demos/episode_0325.gif",
+      "sha256": "083e700ded284eedd74d5ce86b92542e91c30a0c083f6fc12ba425ecb1c6b4a8",
+      "cell_index": 53,
+      "output_index": 753
+    },
+    {
+      "file": "results/demos/episode_0350.gif",
+      "sha256": "a767a1aa58ba5180c8752752ed58a02f4a53bc87079444c2dccb5281ad94bb2c",
+      "cell_index": 53,
+      "output_index": 810
+    },
+    {
+      "file": "results/demos/episode_0375.gif",
+      "sha256": "3d201be1eb627087d5738a3639672e8153ff79c5d37586e57c64e2872687b27f",
+      "cell_index": 53,
+      "output_index": 869
+    },
+    {
+      "file": "results/demos/episode_0400.gif",
+      "sha256": "b79bd7a6f69a9db93b544d9740bf33f35103f47c77cb5a48e790bd4579752b93",
+      "cell_index": 53,
+      "output_index": 927
+    },
+    {
+      "file": "results/demos/episode_0425.gif",
+      "sha256": "9973ae41ae003a65a67471d4d286f73d95b0949a441e3c518665987b9056cb5e",
+      "cell_index": 53,
+      "output_index": 986
+    },
+    {
+      "file": "results/demos/episode_0450.gif",
+      "sha256": "d85b8192376cc636fb72aebb0a7716ea56ed9b7eb7ed4708f75b135acba2a300",
+      "cell_index": 53,
+      "output_index": 1043
+    },
+    {
+      "file": "results/demos/episode_0475.gif",
+      "sha256": "0222847fb9e60e60cf5fd8e4881643a77729249eaa9683462f4228791526c2ec",
+      "cell_index": 53,
+      "output_index": 1099
+    },
+    {
+      "file": "results/demos/episode_0500.gif",
+      "sha256": "8b20bbbdcf0f556f8ba345f3a3fd8c56c4349b8df808f75f2617698d1ce4a852",
+      "cell_index": 53,
+      "output_index": 1156
+    },
+    {
+      "file": "results/demos/episode_0525.gif",
+      "sha256": "737db973130f0e8757f1915d493dd48bb719f627fcc9e7f3b601e6fb2aebb916",
+      "cell_index": 53,
+      "output_index": 1210
+    },
+    {
+      "file": "results/demos/episode_0550.gif",
+      "sha256": "a455d2cf5a0a18e609b6be7efc7b461bf7a246d341fdf5de684ba109e72aacf2",
+      "cell_index": 53,
+      "output_index": 1264
+    },
+    {
+      "file": "results/demos/episode_0575.gif",
+      "sha256": "f7d71fce25995394a41106d5997aa6f0a36e27a3b009c32ff8e611e5657939dc",
+      "cell_index": 53,
+      "output_index": 1322
+    },
+    {
+      "file": "results/demos/episode_0600.gif",
+      "sha256": "ec7f3fb8d073aca0a5e1dad30fd726976effdea6b762fbfec4ba2b6917458241",
+      "cell_index": 53,
+      "output_index": 1381
+    },
+    {
+      "file": "results/demos/episode_0625.gif",
+      "sha256": "819d2954f0b08d9818ac6ceaa8bcb19444a1f8b4b04225879cd1f771ac44c545",
+      "cell_index": 53,
+      "output_index": 1437
+    },
+    {
+      "file": "results/demos/episode_0650.gif",
+      "sha256": "383098fb0165ec20730a931f77a09a975cc9b6037bd6bf0d59984153ce50e0ae",
+      "cell_index": 53,
+      "output_index": 1493
+    },
+    {
+      "file": "results/demos/episode_0675.gif",
+      "sha256": "0869e17875b6372529910dcfbb19fe465bea2741ef7ffd8d4540dccfa2da599a",
+      "cell_index": 53,
+      "output_index": 1553
+    },
+    {
+      "file": "results/demos/episode_0700.gif",
+      "sha256": "58d23248331f79fce5150a604b99278ea6b94f92b73333a6dac4c3d9a2561f1f",
+      "cell_index": 53,
+      "output_index": 1610
+    },
+    {
+      "file": "results/demos/episode_0725.gif",
+      "sha256": "414d7eb99ed36916edae045e1d1086c728b62f98b6d040989df8940885c2ef5c",
+      "cell_index": 53,
+      "output_index": 1667
+    },
+    {
+      "file": "results/demos/episode_0750.gif",
+      "sha256": "2144240589de80ed39b77701784cf5886af809ca8d5c50ce68fd22e23ff99da2",
+      "cell_index": 53,
+      "output_index": 1723
+    },
+    {
+      "file": "results/demos/episode_0775.gif",
+      "sha256": "167f7328fad55da76b78cb3dbaa4acf13a2a63b0f3b3b28bd39bc0e5db07f296",
+      "cell_index": 53,
+      "output_index": 1782
+    },
+    {
+      "file": "results/demos/episode_0800.gif",
+      "sha256": "07ad49b6f0b41732e68ef237e1aebe9a10cb0711a736886f467dbef592d0931a",
+      "cell_index": 53,
+      "output_index": 1844
+    },
+    {
+      "file": "results/demos/episode_0825.gif",
+      "sha256": "93d62d312bf356fd5cbd3e82a14d23f09080ce6faa61584930b316ed596df327",
+      "cell_index": 53,
+      "output_index": 1908
+    },
+    {
+      "file": "results/demos/episode_0850.gif",
+      "sha256": "5a0375d5b7f3f6204e453bcc8b8c0652704c9a56b4fbac4e3a708786b0738ea1",
+      "cell_index": 53,
+      "output_index": 1968
+    },
+    {
+      "file": "results/demos/episode_0875.gif",
+      "sha256": "cd54aaf9e401757516e9fee4bedbd950ffb07079b07be3805a4e52b8c88a0be1",
+      "cell_index": 53,
+      "output_index": 2027
+    },
+    {
+      "file": "results/demos/episode_0900.gif",
+      "sha256": "23b5140d7a135eb43937fc2b4b0ec90cb6fa843e7a7917e2ae79202a89157a29",
+      "cell_index": 53,
+      "output_index": 2090
+    },
+    {
+      "file": "results/demos/episode_0925.gif",
+      "sha256": "d2a4c7ca5e398f9fd98eec75d1aa78cd194130ae2179e58a7ca93855e8da4aae",
+      "cell_index": 53,
+      "output_index": 2151
+    },
+    {
+      "file": "results/demos/episode_0950.gif",
+      "sha256": "0455c6f2c66aec128a4f55557a465fea7a28d43de7ed03772524310d7717959b",
+      "cell_index": 53,
+      "output_index": 2214
+    },
+    {
+      "file": "results/demos/episode_0975.gif",
+      "sha256": "8fc04f311c05a7c6440462d0cb9cf35508033b42650fda31280561265136da0b",
+      "cell_index": 53,
+      "output_index": 2276
+    },
+    {
+      "file": "results/demos/episode_1000.gif",
+      "sha256": "0493b6a98a96302f3630ecd97ca6016ebc926ec78b3f2285d29df53625f9d8d0",
+      "cell_index": 53,
+      "output_index": 2335
+    },
+    {
+      "file": "results/demos/episode_1025.gif",
+      "sha256": "fcdd839a39582e10aa98336f7a7cc283310d0cbbe048354d60495944e6c57aa5",
+      "cell_index": 53,
+      "output_index": 2393
+    },
+    {
+      "file": "results/demos/episode_1050.gif",
+      "sha256": "f562f13b3a1d9ea41db699f42f116d8f1beac37da67ccd918b36129c36d86671",
+      "cell_index": 53,
+      "output_index": 2449
+    },
+    {
+      "file": "results/demos/episode_1075.gif",
+      "sha256": "258f8d5423c87ca20e86ee4ef7a0baf1757e8356210c9bca79b883f194253a20",
+      "cell_index": 53,
+      "output_index": 2510
+    },
+    {
+      "file": "results/demos/episode_1100.gif",
+      "sha256": "643909d0c053bfad6160d2b5baec100c353aa9136f3447d60eeaacf4f500ceee",
+      "cell_index": 53,
+      "output_index": 2570
+    },
+    {
+      "file": "results/demos/episode_1125.gif",
+      "sha256": "705865cf98bb2e197815d6cce29dad6f8fc81cb47e253c2c471ea580e774ca8c",
+      "cell_index": 53,
+      "output_index": 2632
+    },
+    {
+      "file": "results/demos/episode_1150.gif",
+      "sha256": "ffabe1280e1052ebb495f4a2b2ef8790dacb10bff36522496a0cd188aa1f9d3f",
+      "cell_index": 53,
+      "output_index": 2695
+    },
+    {
+      "file": "results/demos/episode_1175.gif",
+      "sha256": "fe5bb6bd42611d64bc1ce6dd408e4d50ff3aba2e44e766ea9a964e3f10c83e7f",
+      "cell_index": 53,
+      "output_index": 2756
+    },
+    {
+      "file": "results/demos/episode_1200.gif",
+      "sha256": "f48df4a6795dbf96f697b2b22acaa4af0a151e80f99892910f046780a9fdd219",
+      "cell_index": 53,
+      "output_index": 2817
+    },
+    {
+      "file": "results/demos/episode_1225.gif",
+      "sha256": "1ffbbf4e8af9e688f3718e14ee98449bdbbcbfd3903c1ede442e9ffcb9bf10b1",
+      "cell_index": 53,
+      "output_index": 2877
+    },
+    {
+      "file": "results/demos/episode_1250.gif",
+      "sha256": "05861629f135502fc0cd7de9a5e6238a3990dda8c64a76650357ef5e18b6efcb",
+      "cell_index": 53,
+      "output_index": 2937
+    },
+    {
+      "file": "results/demos/episode_1275.gif",
+      "sha256": "6447da8357066d7db665a8a3bb51c0774a7bd90ecd32066df0ac3e485facdfff",
+      "cell_index": 53,
+      "output_index": 2997
+    },
+    {
+      "file": "results/demos/episode_1300.gif",
+      "sha256": "32d8d614fde21d034272b5c4dc7eacdf9c2188c5eb89e6dd0e62468fbd91df48",
+      "cell_index": 53,
+      "output_index": 3057
+    },
+    {
+      "file": "results/demos/episode_1325.gif",
+      "sha256": "0551b80819240b7bbbf878182f4c86610b5e138b321f2df8bca2bbf45e1c21c8",
+      "cell_index": 53,
+      "output_index": 3117
+    },
+    {
+      "file": "results/demos/episode_1350.gif",
+      "sha256": "e08498dcbbfd72162175f527134ba2e5526b698074745f31a3f8ab8eec2ef0ac",
+      "cell_index": 53,
+      "output_index": 3178
+    },
+    {
+      "file": "results/demos/episode_1375.gif",
+      "sha256": "08ed9caa993d7c0d032ac7e53eb64ba1b137d5c488ec04a8035cb17b79d4b796",
+      "cell_index": 53,
+      "output_index": 3238
+    },
+    {
+      "file": "results/demos/episode_1400.gif",
+      "sha256": "1473473e8beb5f78abeda73261e261a958e5205cef7e42ae9aa9d5fa22611de0",
+      "cell_index": 53,
+      "output_index": 3301
+    },
+    {
+      "file": "results/demos/episode_1425.gif",
+      "sha256": "34862f08d2fc5e6d74d5ecd2d4a4def49d063669bee0aca208f4f7ed90f7866f",
+      "cell_index": 53,
+      "output_index": 3363
+    },
+    {
+      "file": "results/demos/episode_1450.gif",
+      "sha256": "df54b7c2345122cbe3edf85860f4179d5617713355d57f8faf7dc6698f3f43c4",
+      "cell_index": 53,
+      "output_index": 3423
+    },
+    {
+      "file": "results/demos/episode_1475.gif",
+      "sha256": "6a0d364d1cfa2426ed5d18f333e4e97106cbe3cfac323eb1613a3577268803e6",
+      "cell_index": 53,
+      "output_index": 3485
+    },
+    {
+      "file": "results/demos/episode_1500.gif",
+      "sha256": "449354f0d4d1e772d6ce451d3cbe565a0bf827b359480bec74d54a25ec5a8ca2",
+      "cell_index": 53,
+      "output_index": 3548
+    },
+    {
+      "file": "results/demos/episode_1525.gif",
+      "sha256": "dc0b22cdd37b76f4d87320914ab7515e3a88ba6b5b88430c0d88caf025ad615a",
+      "cell_index": 53,
+      "output_index": 3611
+    },
+    {
+      "file": "results/demos/episode_1550.gif",
+      "sha256": "f9ef6ca2e67f00b0b04838b39e8e44b4cd2ffb62a80da2867efb634a104e2bc3",
+      "cell_index": 53,
+      "output_index": 3674
+    },
+    {
+      "file": "results/demos/episode_1575.gif",
+      "sha256": "9f7154ef9f5ac7f7ab251ec90575d22221f783dfb02334631093680acc75653e",
+      "cell_index": 53,
+      "output_index": 3737
+    },
+    {
+      "file": "results/demos/episode_1600.gif",
+      "sha256": "24d21a980afc272abe8be3bbb80c8ace4599dac2063b4680ed911ab04cca57f6",
+      "cell_index": 53,
+      "output_index": 3799
+    },
+    {
+      "file": "results/demos/episode_1625.gif",
+      "sha256": "667cfa74738010fea15cacfa173e3e81e48909c1fc46b7502dd73f1f94021ce0",
+      "cell_index": 53,
+      "output_index": 3864
+    },
+    {
+      "file": "results/demos/episode_1650.gif",
+      "sha256": "81cc24e6a11f47e16a59be9757c6db5155c165d6f1764b0e4f255a0d7af5c96b",
+      "cell_index": 53,
+      "output_index": 3926
+    },
+    {
+      "file": "results/demos/episode_1675.gif",
+      "sha256": "2dfe614281520ea57f130128fe9cc9af9556d8d4c4f3bfdc2a55038281e90b16",
+      "cell_index": 53,
+      "output_index": 3986
+    },
+    {
+      "file": "results/demos/episode_1700.gif",
+      "sha256": "cf3fe9d9a0b214b52f44ee30dc06907852798982ceb20dda6fa31e717a3a0d8b",
+      "cell_index": 53,
+      "output_index": 4050
+    },
+    {
+      "file": "results/demos/episode_1725.gif",
+      "sha256": "dc31fe8320c2052a427052af9e23a459162f4ce017ac1073ff053d5d77ac4807",
+      "cell_index": 53,
+      "output_index": 4113
+    },
+    {
+      "file": "results/demos/episode_1750.gif",
+      "sha256": "a93806884961f090c8eb83b3a9f85ddca206ba84f56998015052581c6235462d",
+      "cell_index": 53,
+      "output_index": 4177
+    },
+    {
+      "file": "results/demos/episode_1775.gif",
+      "sha256": "5e26ca3791462e798759c031b2746dfdb365d4a571cc900c3ad209fc1d6a4450",
+      "cell_index": 53,
+      "output_index": 4239
+    },
+    {
+      "file": "results/demos/episode_1800.gif",
+      "sha256": "856ce9399977b7a1c8d8959130011c2619a82e408646e179948dd8d07cba33c9",
+      "cell_index": 53,
+      "output_index": 4301
+    },
+    {
+      "file": "results/demos/episode_1825.gif",
+      "sha256": "ab1e2cd92517dcfc7701594493ef20321169d4256543c21e6ce3c89dff18d74b",
+      "cell_index": 53,
+      "output_index": 4363
+    },
+    {
+      "file": "results/demos/episode_1850.gif",
+      "sha256": "cae07a39d43c78dd604a2ae66c52f1bc7a67ed0d4c287ee9d49c0bfe21160f95",
+      "cell_index": 53,
+      "output_index": 4425
+    },
+    {
+      "file": "results/demos/episode_1875.gif",
+      "sha256": "8cd4bca856f0ca20c439d5dae0811e8fc1201561e1c90a43086729c4d3a14a86",
+      "cell_index": 53,
+      "output_index": 4484
+    },
+    {
+      "file": "results/demos/episode_1900.gif",
+      "sha256": "b511f96017022610eb6f940ff6354b48b3233a0be5b1e9e34b4025a5e482a333",
+      "cell_index": 53,
+      "output_index": 4548
+    },
+    {
+      "file": "results/demos/episode_1925.gif",
+      "sha256": "6d45ebb3025a120c07aa5894a57bcc71d93615e62cc9a8a213582e528a65449f",
+      "cell_index": 53,
+      "output_index": 4610
+    },
+    {
+      "file": "results/demos/episode_1950.gif",
+      "sha256": "bef58eb1f25546680526a8e640a940e873e4ebc6b18cda826d5c80d2a7f890a8",
+      "cell_index": 53,
+      "output_index": 4677
+    },
+    {
+      "file": "results/demos/episode_1975.gif",
+      "sha256": "14d89504f9e835a6bd650e9f547c1ba8fbb8b4f56c5c2baf237e67b5c369b03b",
+      "cell_index": 53,
+      "output_index": 4745
+    },
+    {
+      "file": "results/demos/episode_2000.gif",
+      "sha256": "f0e505f27d229d8358e362dbcd90d065edfd6f8128556896f1d6415787cee7d1",
+      "cell_index": 53,
+      "output_index": 4809
+    },
+    {
+      "file": "results/demos/final_best.gif",
+      "sha256": "acca3caa4e19a05af0b5408506e1584f9f82eeda9e7cfb8330043de756680bfa",
+      "cell_index": 58,
+      "output_index": 3
+    }
+  ],
+  "github_gif_display": "HTML image representations added; original embedded GIF data and all other outputs preserved.",
+  "evidence_files_sha256": {
+    "config.json": "28c4df34c7f5f73de8703bf7417582e6092ec6cf20176269f723d4b39343914e",
+    "baseline.json": "4c2eaa6201eac3e1cd76f06276b12ee25dde8e65392aa3f73d3e9dfb5290d347",
+    "comparison.json": "ed9db8c1e7fce6e4ff6ab94253d1fe5f6196e9af20055b52dbb83103dd1efe69",
+    "training.csv": "6e6d317cfbb58de80c90ae3581364eb3b379ed7f541e8213d98c5e9e2d8373ee",
+    "training_summary.json": "0cc88740e1acb4d071f1cad7ab02aa4bcdccc73c8a36b19ef3c4c281dc943aba",
+    "demo_scores.json": "a473821c549dae36da939d15eb903af1898fc43dfec0476b068c3eca6252e1d3",
+    "training_dashboard.png": "61448c1fc16dcc67f7d1f3d9cdd6d599830f155d240d444059d6ff4612b2a226"
+  },
+  "archived_from_commit": "3f0f273d5aa7fde4f40f877453f0f32f4b7663d0",
+  "notebook_sha256_before_archive_display_fix": "523ddca4979ee7980ddb3d2a21ea092617fb6ced047f0231830b4cb5c7a7e753",
+  "archive_display_note": "Only GIF HTML URLs were pinned to the source commit; embedded image bytes, cell sources, and execution outputs otherwise retained."
+}
