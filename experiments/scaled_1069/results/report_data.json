@@ -1,0 +1,1476 @@
+{
+  "run_id": "20260920_152728_434799",
+  "run_directory": "pacman_runs/20260920_152728_434799",
+  "archive": "pacman_runs/20260920_152728_434799.zip",
+  "config": {
+    "algorithm": "Double DQN",
+    "training_time_limit_seconds": 7200,
+    "exploration": 0.1,
+    "episodes_requested": 2000,
+    "learning_rate": 0.0001,
+    "seed": 42,
+    "device": "mps",
+    "python": "3.12.14",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "packages": {
+      "torch": "2.14.0",
+      "gymnasium": "1.3.0",
+      "ale-py": "0.11.2",
+      "opencv-python-headless": "4.14.0.94",
+      "numpy": "2.5.3",
+      "matplotlib": "3.11.2",
+      "Pillow": "12.3.0"
+    },
+    "environment": "ALE/MsPacman-v5",
+    "frame_skip": 4,
+    "sticky_action_probability": 0.25,
+    "noop_max": 30,
+    "grayscale_size": 84,
+    "stack_size": 4,
+    "terminal_on_life_loss": false,
+    "max_decisions_per_game": 3000,
+    "replay_capacity": 20000,
+    "warmup_decisions": 1000,
+    "batch_size": 32,
+    "train_every_decisions": 4,
+    "target_sync_decisions": 1000,
+    "gamma": 0.99,
+    "training_reward_clipping": null,
+    "training_reward_scale": 0.01,
+    "training_reward_transform": "raw_points * 0.01 (no clipping)",
+    "training_death_penalty": 0.0,
+    "eval_exploration": 0.05,
+    "eval_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "preview_seconds": 20,
+    "preview_speed": 4,
+    "preview_plays": 2,
+    "preview_stride": 4,
+    "preview_frame_ms": 67
+  },
+  "summary": {
+    "status": "interrupted",
+    "completed_episodes": 1069,
+    "total_decisions": 744500,
+    "learning_updates": 185875,
+    "training_time_limit_seconds": 7200,
+    "elapsed_seconds_including_periodic_demos": 4587.930246250005
+  },
+  "training_reward": {
+    "mode": "scaled_raw_points",
+    "clipping": null,
+    "scale": 0.01,
+    "transform": "raw_points * 0.01 (no clipping)",
+    "death_penalty": 0.0,
+    "source_and_config_verified": true,
+    "only_reward_training_setting_changed_vs_clipped_2000": true,
+    "changed_code_cells_vs_clipped_2000_zero_based": [
+      10,
+      19,
+      43
+    ]
+  },
+  "update_count_reconciliation": {
+    "scheduled_learning_updates": 185876,
+    "recorded_learning_updates": 185875,
+    "scheduled_minus_recorded": 1,
+    "interrupted_update_completion_uncertain": true,
+    "explanation": "The decision counter advances before learn() and the update counter advances after learn() returns. Interruption at an update boundary left one scheduled update unrecorded; whether its optimizer step started or completed is unknown. The recorded update count is preserved, not increased."
+  },
+  "zero_learning_updates": false,
+  "ended_before_episode_budget": true,
+  "partial_episode_decisions": 480,
+  "evaluation": {
+    "baseline_kind": "untrained network",
+    "before": {
+      "seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "scores": [
+        350.0,
+        500.0,
+        320.0,
+        800.0,
+        490.0
+      ],
+      "mean": 492.0,
+      "steps": [
+        560,
+        597,
+        614,
+        640,
+        534
+      ],
+      "time_limited": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "after": {
+      "seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "scores": [
+        1430.0,
+        1050.0,
+        1860.0,
+        1930.0,
+        980.0
+      ],
+      "mean": 1450.0,
+      "steps": [
+        924,
+        569,
+        822,
+        898,
+        666
+      ],
+      "time_limited": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "evaluation_exploration": 0.05,
+    "max_decisions_per_game": 3000
+  },
+  "score_changes": [
+    1080.0,
+    550.0,
+    1540.0,
+    1130.0,
+    490.0
+  ],
+  "mean_score_change": 958.0,
+  "mean_score_change_percent": 194.71544715447155,
+  "improved_games": 5,
+  "worsened_games": 0,
+  "unchanged_games": 0,
+  "best_trained_game": {
+    "game": 4,
+    "seed": 404,
+    "score": 1930.0,
+    "steps": 898,
+    "time_limited": false
+  },
+  "time_limited_before": 0,
+  "time_limited_after": 0,
+  "training_mean_score": 976.9878391019645,
+  "training_blocks_of_25": [
+    {
+      "first_episode": 1,
+      "last_episode": 25,
+      "count": 25,
+      "mean_score": 774.4,
+      "mean_episode_loss": 0.002891362688385691
+    },
+    {
+      "first_episode": 26,
+      "last_episode": 50,
+      "count": 25,
+      "mean_score": 803.6,
+      "mean_episode_loss": 0.0026799061356853377
+    },
+    {
+      "first_episode": 51,
+      "last_episode": 75,
+      "count": 25,
+      "mean_score": 742.0,
+      "mean_episode_loss": 0.004030724122435033
+    },
+    {
+      "first_episode": 76,
+      "last_episode": 100,
+      "count": 25,
+      "mean_score": 707.2,
+      "mean_episode_loss": 0.003459183745729802
+    },
+    {
+      "first_episode": 101,
+      "last_episode": 125,
+      "count": 25,
+      "mean_score": 600.0,
+      "mean_episode_loss": 0.003509274541485068
+    },
+    {
+      "first_episode": 126,
+      "last_episode": 150,
+      "count": 25,
+      "mean_score": 940.0,
+      "mean_episode_loss": 0.00404323281034644
+    },
+    {
+      "first_episode": 151,
+      "last_episode": 175,
+      "count": 25,
+      "mean_score": 696.8,
+      "mean_episode_loss": 0.0046349226022927795
+    },
+    {
+      "first_episode": 176,
+      "last_episode": 200,
+      "count": 25,
+      "mean_score": 642.0,
+      "mean_episode_loss": 0.00380021385473171
+    },
+    {
+      "first_episode": 201,
+      "last_episode": 225,
+      "count": 25,
+      "mean_score": 753.6,
+      "mean_episode_loss": 0.003861292297501181
+    },
+    {
+      "first_episode": 226,
+      "last_episode": 250,
+      "count": 25,
+      "mean_score": 918.0,
+      "mean_episode_loss": 0.004045254525314731
+    },
+    {
+      "first_episode": 251,
+      "last_episode": 275,
+      "count": 25,
+      "mean_score": 963.6,
+      "mean_episode_loss": 0.004723434573140762
+    },
+    {
+      "first_episode": 276,
+      "last_episode": 300,
+      "count": 25,
+      "mean_score": 1158.4,
+      "mean_episode_loss": 0.004885503384201778
+    },
+    {
+      "first_episode": 301,
+      "last_episode": 325,
+      "count": 25,
+      "mean_score": 869.6,
+      "mean_episode_loss": 0.005356532044227254
+    },
+    {
+      "first_episode": 326,
+      "last_episode": 350,
+      "count": 25,
+      "mean_score": 912.0,
+      "mean_episode_loss": 0.004033487975502763
+    },
+    {
+      "first_episode": 351,
+      "last_episode": 375,
+      "count": 25,
+      "mean_score": 1055.2,
+      "mean_episode_loss": 0.0040892068105914635
+    },
+    {
+      "first_episode": 376,
+      "last_episode": 400,
+      "count": 25,
+      "mean_score": 1060.8,
+      "mean_episode_loss": 0.005704790987789377
+    },
+    {
+      "first_episode": 401,
+      "last_episode": 425,
+      "count": 25,
+      "mean_score": 933.6,
+      "mean_episode_loss": 0.005127593906445786
+    },
+    {
+      "first_episode": 426,
+      "last_episode": 450,
+      "count": 25,
+      "mean_score": 888.8,
+      "mean_episode_loss": 0.005300249161422247
+    },
+    {
+      "first_episode": 451,
+      "last_episode": 475,
+      "count": 25,
+      "mean_score": 1090.0,
+      "mean_episode_loss": 0.00506718595593083
+    },
+    {
+      "first_episode": 476,
+      "last_episode": 500,
+      "count": 25,
+      "mean_score": 969.2,
+      "mean_episode_loss": 0.006505973499150496
+    },
+    {
+      "first_episode": 501,
+      "last_episode": 525,
+      "count": 25,
+      "mean_score": 996.0,
+      "mean_episode_loss": 0.005763715672695559
+    },
+    {
+      "first_episode": 526,
+      "last_episode": 550,
+      "count": 25,
+      "mean_score": 986.4,
+      "mean_episode_loss": 0.0056368500998055125
+    },
+    {
+      "first_episode": 551,
+      "last_episode": 575,
+      "count": 25,
+      "mean_score": 1008.0,
+      "mean_episode_loss": 0.006407576652427803
+    },
+    {
+      "first_episode": 576,
+      "last_episode": 600,
+      "count": 25,
+      "mean_score": 1000.0,
+      "mean_episode_loss": 0.006338174776777391
+    },
+    {
+      "first_episode": 601,
+      "last_episode": 625,
+      "count": 25,
+      "mean_score": 756.0,
+      "mean_episode_loss": 0.005019982859561468
+    },
+    {
+      "first_episode": 626,
+      "last_episode": 650,
+      "count": 25,
+      "mean_score": 1044.8,
+      "mean_episode_loss": 0.004674411197370083
+    },
+    {
+      "first_episode": 651,
+      "last_episode": 675,
+      "count": 25,
+      "mean_score": 992.8,
+      "mean_episode_loss": 0.004757841059068091
+    },
+    {
+      "first_episode": 676,
+      "last_episode": 700,
+      "count": 25,
+      "mean_score": 1049.6,
+      "mean_episode_loss": 0.00503507476845448
+    },
+    {
+      "first_episode": 701,
+      "last_episode": 725,
+      "count": 25,
+      "mean_score": 1062.0,
+      "mean_episode_loss": 0.004696090586928527
+    },
+    {
+      "first_episode": 726,
+      "last_episode": 750,
+      "count": 25,
+      "mean_score": 1153.2,
+      "mean_episode_loss": 0.00546607051397796
+    },
+    {
+      "first_episode": 751,
+      "last_episode": 775,
+      "count": 25,
+      "mean_score": 1097.2,
+      "mean_episode_loss": 0.0077011433632610355
+    },
+    {
+      "first_episode": 776,
+      "last_episode": 800,
+      "count": 25,
+      "mean_score": 1016.4,
+      "mean_episode_loss": 0.004955936843194399
+    },
+    {
+      "first_episode": 801,
+      "last_episode": 825,
+      "count": 25,
+      "mean_score": 1292.0,
+      "mean_episode_loss": 0.005679635314544743
+    },
+    {
+      "first_episode": 826,
+      "last_episode": 850,
+      "count": 25,
+      "mean_score": 1138.4,
+      "mean_episode_loss": 0.00642350678042653
+    },
+    {
+      "first_episode": 851,
+      "last_episode": 875,
+      "count": 25,
+      "mean_score": 863.2,
+      "mean_episode_loss": 0.006447336800557745
+    },
+    {
+      "first_episode": 876,
+      "last_episode": 900,
+      "count": 25,
+      "mean_score": 1259.2,
+      "mean_episode_loss": 0.0067978143646881895
+    },
+    {
+      "first_episode": 901,
+      "last_episode": 925,
+      "count": 25,
+      "mean_score": 1216.8,
+      "mean_episode_loss": 0.00857828225220037
+    },
+    {
+      "first_episode": 926,
+      "last_episode": 950,
+      "count": 25,
+      "mean_score": 1074.8,
+      "mean_episode_loss": 0.006476401805387326
+    },
+    {
+      "first_episode": 951,
+      "last_episode": 975,
+      "count": 25,
+      "mean_score": 1046.8,
+      "mean_episode_loss": 0.005380721763294396
+    },
+    {
+      "first_episode": 976,
+      "last_episode": 1000,
+      "count": 25,
+      "mean_score": 1161.2,
+      "mean_episode_loss": 0.006770120867205424
+    },
+    {
+      "first_episode": 1001,
+      "last_episode": 1025,
+      "count": 25,
+      "mean_score": 1165.2,
+      "mean_episode_loss": 0.007234093567587274
+    },
+    {
+      "first_episode": 1026,
+      "last_episode": 1050,
+      "count": 25,
+      "mean_score": 1110.4,
+      "mean_episode_loss": 0.007693527003068101
+    },
+    {
+      "first_episode": 1051,
+      "last_episode": 1069,
+      "count": 19,
+      "mean_score": 1061.578947368421,
+      "mean_episode_loss": 0.007537490787086864
+    }
+  ],
+  "training_blocks_of_250": [
+    {
+      "first_episode": 1,
+      "last_episode": 250,
+      "count": 250,
+      "mean_score": 757.76,
+      "mean_episode_loss": 0.003698766347025336
+    },
+    {
+      "first_episode": 251,
+      "last_episode": 500,
+      "count": 250,
+      "mean_score": 990.12,
+      "mean_episode_loss": 0.005079395829840276
+    },
+    {
+      "first_episode": 501,
+      "last_episode": 750,
+      "count": 250,
+      "mean_score": 1004.88,
+      "mean_episode_loss": 0.005379578818706688
+    },
+    {
+      "first_episode": 751,
+      "last_episode": 1000,
+      "count": 250,
+      "mean_score": 1116.6,
+      "mean_episode_loss": 0.006521090015476016
+    },
+    {
+      "first_episode": 1001,
+      "last_episode": 1069,
+      "count": 69,
+      "mean_score": 1116.8115942028985,
+      "mean_episode_loss": 0.0074840991191454315
+    }
+  ],
+  "periodic_demo_scores": [
+    {
+      "episode": 25,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        400.0
+      ],
+      "mean": 400.0,
+      "steps": [
+        824
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 50,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1570.0
+      ],
+      "mean": 1570.0,
+      "steps": [
+        810
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 75,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        270.0
+      ],
+      "mean": 270.0,
+      "steps": [
+        412
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 100,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        270.0
+      ],
+      "mean": 270.0,
+      "steps": [
+        510
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 125,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        420.0
+      ],
+      "mean": 420.0,
+      "steps": [
+        610
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 150,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        520.0
+      ],
+      "mean": 520.0,
+      "steps": [
+        656
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 175,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        420.0
+      ],
+      "mean": 420.0,
+      "steps": [
+        558
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 200,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        320.0
+      ],
+      "mean": 320.0,
+      "steps": [
+        602
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 225,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        440.0
+      ],
+      "mean": 440.0,
+      "steps": [
+        992
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 250,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        770.0
+      ],
+      "mean": 770.0,
+      "steps": [
+        634
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 275,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        840.0
+      ],
+      "mean": 840.0,
+      "steps": [
+        544
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 300,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1210.0
+      ],
+      "mean": 1210.0,
+      "steps": [
+        970
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 325,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        870.0
+      ],
+      "mean": 870.0,
+      "steps": [
+        690
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 350,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        750.0
+      ],
+      "mean": 750.0,
+      "steps": [
+        744
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 375,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        560.0
+      ],
+      "mean": 560.0,
+      "steps": [
+        668
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 400,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        280.0
+      ],
+      "mean": 280.0,
+      "steps": [
+        528
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 425,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        660.0
+      ],
+      "mean": 660.0,
+      "steps": [
+        598
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 450,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        910.0
+      ],
+      "mean": 910.0,
+      "steps": [
+        686
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 475,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        750.0
+      ],
+      "mean": 750.0,
+      "steps": [
+        562
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 500,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        430.0
+      ],
+      "mean": 430.0,
+      "steps": [
+        500
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 525,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        960.0
+      ],
+      "mean": 960.0,
+      "steps": [
+        598
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 550,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1190.0
+      ],
+      "mean": 1190.0,
+      "steps": [
+        820
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 575,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1350.0
+      ],
+      "mean": 1350.0,
+      "steps": [
+        600
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 600,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        120.0
+      ],
+      "mean": 120.0,
+      "steps": [
+        292
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 625,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        300.0
+      ],
+      "mean": 300.0,
+      "steps": [
+        436
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 650,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1760.0
+      ],
+      "mean": 1760.0,
+      "steps": [
+        914
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 675,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        890.0
+      ],
+      "mean": 890.0,
+      "steps": [
+        650
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 700,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        430.0
+      ],
+      "mean": 430.0,
+      "steps": [
+        486
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 725,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1060.0
+      ],
+      "mean": 1060.0,
+      "steps": [
+        1050
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 750,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        700.0
+      ],
+      "mean": 700.0,
+      "steps": [
+        856
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 775,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        800.0
+      ],
+      "mean": 800.0,
+      "steps": [
+        596
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 800,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        770.0
+      ],
+      "mean": 770.0,
+      "steps": [
+        506
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 825,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        1290.0
+      ],
+      "mean": 1290.0,
+      "steps": [
+        692
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 850,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        170.0
+      ],
+      "mean": 170.0,
+      "steps": [
+        442
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 875,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        260.0
+      ],
+      "mean": 260.0,
+      "steps": [
+        410
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 900,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        850.0
+      ],
+      "mean": 850.0,
+      "steps": [
+        490
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 925,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        250.0
+      ],
+      "mean": 250.0,
+      "steps": [
+        346
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 950,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        700.0
+      ],
+      "mean": 700.0,
+      "steps": [
+        590
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 975,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        930.0
+      ],
+      "mean": 930.0,
+      "steps": [
+        636
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 1000,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        670.0
+      ],
+      "mean": 670.0,
+      "steps": [
+        544
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 1025,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        650.0
+      ],
+      "mean": 650.0,
+      "steps": [
+        708
+      ],
+      "time_limited": [
+        false
+      ]
+    },
+    {
+      "episode": 1050,
+      "seeds": [
+        101
+      ],
+      "scores": [
+        770.0
+      ],
+      "mean": 770.0,
+      "steps": [
+        524
+      ],
+      "time_limited": [
+        false
+      ]
+    }
+  ],
+  "gif_count": 44,
+  "periodic_checkpoint_count": 42,
+  "gifs": [
+    "results/demos/episode_0000.gif",
+    "results/demos/episode_0025.gif",
+    "results/demos/episode_0050.gif",
+    "results/demos/episode_0075.gif",
+    "results/demos/episode_0100.gif",
+    "results/demos/episode_0125.gif",
+    "results/demos/episode_0150.gif",
+    "results/demos/episode_0175.gif",
+    "results/demos/episode_0200.gif",
+    "results/demos/episode_0225.gif",
+    "results/demos/episode_0250.gif",
+    "results/demos/episode_0275.gif",
+    "results/demos/episode_0300.gif",
+    "results/demos/episode_0325.gif",
+    "results/demos/episode_0350.gif",
+    "results/demos/episode_0375.gif",
+    "results/demos/episode_0400.gif",
+    "results/demos/episode_0425.gif",
+    "results/demos/episode_0450.gif",
+    "results/demos/episode_0475.gif",
+    "results/demos/episode_0500.gif",
+    "results/demos/episode_0525.gif",
+    "results/demos/episode_0550.gif",
+    "results/demos/episode_0575.gif",
+    "results/demos/episode_0600.gif",
+    "results/demos/episode_0625.gif",
+    "results/demos/episode_0650.gif",
+    "results/demos/episode_0675.gif",
+    "results/demos/episode_0700.gif",
+    "results/demos/episode_0725.gif",
+    "results/demos/episode_0750.gif",
+    "results/demos/episode_0775.gif",
+    "results/demos/episode_0800.gif",
+    "results/demos/episode_0825.gif",
+    "results/demos/episode_0850.gif",
+    "results/demos/episode_0875.gif",
+    "results/demos/episode_0900.gif",
+    "results/demos/episode_0925.gif",
+    "results/demos/episode_0950.gif",
+    "results/demos/episode_0975.gif",
+    "results/demos/episode_1000.gif",
+    "results/demos/episode_1025.gif",
+    "results/demos/episode_1050.gif",
+    "results/demos/final_best.gif"
+  ],
+  "checkpoints_in_local_zip": [
+    "untrained.pt",
+    "trained.pt",
+    "episode_0025.pt",
+    "episode_0050.pt",
+    "episode_0075.pt",
+    "episode_0100.pt",
+    "episode_0125.pt",
+    "episode_0150.pt",
+    "episode_0175.pt",
+    "episode_0200.pt",
+    "episode_0225.pt",
+    "episode_0250.pt",
+    "episode_0275.pt",
+    "episode_0300.pt",
+    "episode_0325.pt",
+    "episode_0350.pt",
+    "episode_0375.pt",
+    "episode_0400.pt",
+    "episode_0425.pt",
+    "episode_0450.pt",
+    "episode_0475.pt",
+    "episode_0500.pt",
+    "episode_0525.pt",
+    "episode_0550.pt",
+    "episode_0575.pt",
+    "episode_0600.pt",
+    "episode_0625.pt",
+    "episode_0650.pt",
+    "episode_0675.pt",
+    "episode_0700.pt",
+    "episode_0725.pt",
+    "episode_0750.pt",
+    "episode_0775.pt",
+    "episode_0800.pt",
+    "episode_0825.pt",
+    "episode_0850.pt",
+    "episode_0875.pt",
+    "episode_0900.pt",
+    "episode_0925.pt",
+    "episode_0950.pt",
+    "episode_0975.pt",
+    "episode_1000.pt",
+    "episode_1025.pt",
+    "episode_1050.pt"
+  ],
+  "clipped_2000_reference": {
+    "notebook": "experiments/clipped_2000/pacman_dqn.ipynb",
+    "notebook_sha256": "2011603f6b2abf2ccddcf5b2f7595215d9b1de1dc27159d88b43e6393c2e20dc",
+    "runtime_field_differences": {},
+    "config": {
+      "algorithm": "Double DQN",
+      "training_time_limit_seconds": 7200,
+      "exploration": 0.1,
+      "episodes_requested": 2000,
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "device": "mps",
+      "python": "3.12.14",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "packages": {
+        "torch": "2.14.0",
+        "gymnasium": "1.3.0",
+        "ale-py": "0.11.2",
+        "opencv-python-headless": "4.14.0.94",
+        "numpy": "2.5.3",
+        "matplotlib": "3.11.2",
+        "Pillow": "12.3.0"
+      },
+      "environment": "ALE/MsPacman-v5",
+      "frame_skip": 4,
+      "sticky_action_probability": 0.25,
+      "noop_max": 30,
+      "grayscale_size": 84,
+      "stack_size": 4,
+      "terminal_on_life_loss": false,
+      "max_decisions_per_game": 3000,
+      "replay_capacity": 20000,
+      "warmup_decisions": 1000,
+      "batch_size": 32,
+      "train_every_decisions": 4,
+      "target_sync_decisions": 1000,
+      "gamma": 0.99,
+      "training_reward_clipping": [
+        -1,
+        1
+      ],
+      "eval_exploration": 0.05,
+      "eval_seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "preview_seconds": 20,
+      "preview_speed": 4,
+      "preview_plays": 2,
+      "preview_stride": 4,
+      "preview_frame_ms": 67
+    },
+    "config_sha256": "28c4df34c7f5f73de8703bf7417582e6092ec6cf20176269f723d4b39343914e",
+    "comparison": {
+      "baseline_kind": "untrained network",
+      "before": {
+        "seeds": [
+          101,
+          202,
+          303,
+          404,
+          505
+        ],
+        "scores": [
+          350.0,
+          500.0,
+          320.0,
+          800.0,
+          490.0
+        ],
+        "mean": 492.0,
+        "steps": [
+          560,
+          597,
+          614,
+          640,
+          534
+        ],
+        "time_limited": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "after": {
+        "seeds": [
+          101,
+          202,
+          303,
+          404,
+          505
+        ],
+        "scores": [
+          2310.0,
+          2530.0,
+          1000.0,
+          1090.0,
+          980.0
+        ],
+        "mean": 1582.0,
+        "steps": [
+          712,
+          975,
+          664,
+          602,
+          666
+        ],
+        "time_limited": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "evaluation_exploration": 0.05,
+      "max_decisions_per_game": 3000
+    },
+    "summary": {
+      "status": "completed",
+      "completed_episodes": 2000,
+      "total_decisions": 1318637,
+      "learning_updates": 329410,
+      "training_time_limit_seconds": 7200,
+      "elapsed_seconds_including_periodic_demos": 5919.556253292001
+    },
+    "archive": "pacman_runs/20260915_203342_502034.zip",
+    "archive_sha256": "7031d77dfceec01acaf45f348a731b88c381d4f0975849933808b94a3bf98056",
+    "preserved_archive_and_evidence_verified": true
+  },
+  "runtime_field_differences_vs_clipped_2000": {},
+  "comparison_to_clipped_2000": {
+    "comparison_json": "experiments/clipped_2000/results/comparison.json",
+    "previous_mean_score": 1582.0,
+    "new_mean_score": 1450.0,
+    "mean_score_change": -132.0,
+    "mean_score_change_percent": -8.34386852085967,
+    "mean_score_multiple": 0.9165613147914032,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "previous_scores": [
+      2310.0,
+      2530.0,
+      1000.0,
+      1090.0,
+      980.0
+    ],
+    "new_scores": [
+      1430.0,
+      1050.0,
+      1860.0,
+      1930.0,
+      980.0
+    ],
+    "score_changes": [
+      -880.0,
+      -1480.0,
+      860.0,
+      840.0,
+      0.0
+    ],
+    "improved_games": 2,
+    "worsened_games": 2,
+    "unchanged_games": 1,
+    "previous_training_budget": {
+      "status": "completed",
+      "completed_episodes": 2000,
+      "total_decisions": 1318637,
+      "learning_updates": 329410,
+      "training_time_limit_seconds": 7200,
+      "elapsed_seconds_including_periodic_demos": 5919.556253292001
+    },
+    "new_training_budget": {
+      "status": "interrupted",
+      "completed_episodes": 1069,
+      "total_decisions": 744500,
+      "learning_updates": 185875,
+      "training_time_limit_seconds": 7200,
+      "elapsed_seconds_including_periodic_demos": 4587.930246250005
+    }
+  }
+}

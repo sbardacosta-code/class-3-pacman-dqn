@@ -40,6 +40,39 @@
       505
     ],
     "scores": [
+      2750.0,
+      1740.0,
+      4300.0,
+      2480.0,
+      1410.0
+    ],
+    "mean": 2536.0,
+    "steps": [
+      718,
+      983,
+      940,
+      1056,
+      930
+    ],
+    "time_limited": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "evaluation_exploration": 0.05,
+  "max_decisions_per_game": 3000,
+  "warm_start": {
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "scores": [
       1430.0,
       1050.0,
       1860.0,
@@ -62,6 +95,5 @@
       false
     ]
   },
-  "evaluation_exploration": 0.05,
-  "max_decisions_per_game": 3000
+  "model_selection": "separate validation seeds 20001-20010"
 }

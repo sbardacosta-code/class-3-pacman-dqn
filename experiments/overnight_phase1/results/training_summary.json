@@ -1,0 +1,55 @@
+{
+  "status": "time_budget",
+  "completed_episodes": 1975,
+  "episodes_started": 1979,
+  "total_decisions": 1535392,
+  "learning_updates": 381349,
+  "training_time_limit_seconds": 7200,
+  "elapsed_seconds_including_periodic_demos": 7200.011292934418,
+  "active_monotonic_elapsed_seconds": 7199.9537710830045,
+  "partial_games": [
+    {
+      "slot": 0,
+      "training_episode_id": 1979,
+      "seed": 3090,
+      "decisions": 27,
+      "score": 0.0,
+      "lives_lost": 0
+    },
+    {
+      "slot": 1,
+      "training_episode_id": 1978,
+      "seed": 3089,
+      "decisions": 76,
+      "score": 30.0,
+      "lives_lost": 0
+    },
+    {
+      "slot": 2,
+      "training_episode_id": 1977,
+      "seed": 3088,
+      "decisions": 171,
+      "score": 180.0,
+      "lives_lost": 0
+    },
+    {
+      "slot": 3,
+      "training_episode_id": 1976,
+      "seed": 3087,
+      "decisions": 292,
+      "score": 450.0,
+      "lives_lost": 0
+    }
+  ],
+  "training_lives_lost": 5925,
+  "replay_size": 50000,
+  "selected_additional_episodes": 1250,
+  "selected_recorded_updates": 236815,
+  "selected_validation_metric": 1732.057635075581,
+  "inherited_completed_episodes": 1069,
+  "inherited_decisions": 744500,
+  "inherited_recorded_updates": 185875,
+  "cumulative_completed_episodes": 3044,
+  "cumulative_decisions": 2279892,
+  "cumulative_recorded_updates": 567224
+}

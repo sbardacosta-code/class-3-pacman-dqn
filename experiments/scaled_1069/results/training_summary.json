@@ -1,0 +1,8 @@
+{
+  "status": "interrupted",
+  "completed_episodes": 1069,
+  "total_decisions": 744500,
+  "learning_updates": 185875,
+  "training_time_limit_seconds": 7200,
+  "elapsed_seconds_including_periodic_demos": 4587.930246250005
+}

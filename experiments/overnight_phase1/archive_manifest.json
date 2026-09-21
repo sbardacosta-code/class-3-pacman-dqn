@@ -1,0 +1,9 @@
+{
+  "run_id": "20260921_005003_092029",
+  "archived_utc": "2026-09-21T09:51:27.480194+00:00",
+  "original_executed_notebook_sha256": "70215a87bdeb80e12c5a489a57c10705b85187ae4855faaf5a2713d4d491be4c",
+  "archived_notebook_sha256": "0570c746a98ad8ed3fefe0252522238b9018a272ac6b67d60b3cebc8d4e465d4",
+  "original_zip_sha256": "70d6ecf69a49ab53cb3d053251d7fed639449a20b6bcf8ac0cd28191a2535f7b",
+  "frozen_original_plan": "frozen_experiment_plan.md",
+  "frozen_original_plan_sha256": "518ef076a9cbeb4279fb43e7e06ec34f156a76ea916c84bff24006031d8759dc"
+}

@@ -1,0 +1,62 @@
+{
+  "source_url": "https://github.com/pepealonso95/pacman-dqn",
+  "notebook_source_url": "https://raw.githubusercontent.com/pepealonso95/pacman-dqn/main/pacman_dqn.ipynb",
+  "downloaded_notebook_sha256": "936cf7d735fa0023a6d31e31bfcf4ff2fa82d2dfb5127a730bcf29f6a5b92ea1",
+  "original_experiment_notebook": "experiments/original_100/pacman_dqn.ipynb",
+  "original_experiment_notebook_sha256": "abc9c0e68d0d81adfa971e3d69255d772a0e9c0d5e876d1d17c3cea3cad2a6dc",
+  "notebook_cell_sources_changed": true,
+  "changed_source_cell_indices_zero_based": [
+    2,
+    9,
+    10,
+    18,
+    19,
+    23,
+    43,
+    47,
+    51
+  ],
+  "documented_extensions": {
+    "algorithm": "Double DQN",
+    "replay_capacity": 20000,
+    "training_time_limit_seconds": 7200,
+    "training_reward": {
+      "mode": "scaled_raw_points",
+      "clipping": null,
+      "scale": 0.01,
+      "transform": "raw_points * 0.01 (no clipping)",
+      "death_penalty": 0.0,
+      "source_and_config_verified": true,
+      "only_reward_training_setting_changed_vs_clipped_2000": true,
+      "changed_code_cells_vs_clipped_2000_zero_based": [
+        10,
+        19,
+        43
+      ]
+    }
+  },
+  "evaluation_and_preprocessing_cells_unchanged": {
+    "12": "preview settings",
+    "15": "environment and preprocessing",
+    "17": "network architecture",
+    "21": "action selection",
+    "30": "evaluation function",
+    "45": "untrained evaluation",
+    "56": "saved-model evaluation",
+    "58": "score comparison and final outputs"
+  },
+  "execution": "Local Jupyter kernel through nbclient; all 28 code cells executed in order",
+  "run_id": "20260920_152728_434799",
+  "display_only_postprocessing": "Added HTML image representations to byte-matched GIF outputs; all embedded GIF bytes and other outputs retained.",
+  "training_comparison_reference": {
+    "notebook": "experiments/clipped_2000/pacman_dqn.ipynb",
+    "notebook_sha256": "2011603f6b2abf2ccddcf5b2f7595215d9b1de1dc27159d88b43e6393c2e20dc",
+    "runtime_field_differences": {},
+    "config_sha256": "28c4df34c7f5f73de8703bf7417582e6092ec6cf20176269f723d4b39343914e",
+    "archive": "pacman_runs/20260915_203342_502034.zip",
+    "archive_sha256": "7031d77dfceec01acaf45f348a731b88c381d4f0975849933808b94a3bf98056",
+    "preserved_archive_and_evidence_verified": true
+  },
+  "only_reward_training_setting_changed_vs_clipped_2000": true,
+  "runtime_field_differences_vs_clipped_2000": {}
+}

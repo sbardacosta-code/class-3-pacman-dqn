@@ -5,3 +5,4 @@ pacman_runs/
 __pycache__/
 .ipynb_checkpoints/
 .execution/
+resume_bundles/
