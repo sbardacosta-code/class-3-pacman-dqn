@@ -6,3 +6,7 @@ __pycache__/
 .ipynb_checkpoints/
 .execution/
 resume_bundles/
+
+# Separate projects that live inside this folder but belong to their own repos.
+super-mario-kart-rl/
+smb3-local-backup/
